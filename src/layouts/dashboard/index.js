@@ -39,7 +39,7 @@ import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 // Dashboard components
 import ProjectsIBM from "layouts/dashboard/components/ProjectsIBM";
 
-// Dashboard components
+// Dashboard   components
 import ProjectsQisk from "layouts/dashboard/components/ProjectsQisk";
 import Icon from "@mui/material/Icon";
 
