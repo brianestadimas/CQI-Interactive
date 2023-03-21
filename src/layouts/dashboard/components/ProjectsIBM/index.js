@@ -33,7 +33,7 @@ import data from "layouts/dashboard/components/Projects/data";
 import "./style.css"
 import Iframe from 'react-iframe'
 
-function Projects() {
+function ProjectsIBM() {
   const { columns, rows } = data();
   const [menu, setMenu] = useState(null);
   const ref = useRef(null);
@@ -72,22 +72,20 @@ function Projects() {
       <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
         <MDBox>
           <MDTypography variant="h6" gutterBottom>
-
-          <Icon
+            IBM Quantum Lab Project Overview
+          </MDTypography>
+          <MDBox display="flex" alignItems="center" lineHeight={0}>
+            {/* <Icon
               sx={{
                 fontWeight: "bold",
                 color: ({ palette: { info } }) => info.main,
-                mt: 0.5,
-                mr: 1,
+                mt: -0.5,
               }}
             >
-              monitor
-            </Icon>
-            Quantum Circuit for Neural Network
-          </MDTypography>
-          <MDBox display="flex" alignItems="center" lineHeight={0}>
+              done
+            </Icon> */}
             <MDTypography variant="button" fontWeight="regular" color="text">
-            Most Quantum neural networks are developed as feed-forward networks. Similar to their classical counterparts, this structure intakes input from one layer of qubits, and passes that input onto another layer of qubits. This layer of qubits evaluates this information and passes on the output to the next layer.
+            we demonstrate that a careful circuit decomposition allows us to experimentally implement a vast number of fundamental open quantum systems models for one and two qubits. Not only are we able to generate different classes of open quantum dynamics, namely, unital (e.g., pure dephasing dynamical maps), non-unital (e.g., amplitude damping dynamical maps), phase covariant, and non-phase covariant (e.g., Pauli dynamical maps), but also we can explore the Markovian to non-Markovian crossover, including the recently discovered examples of essential16 and eternal54,55 non-Markovianity.
             </MDTypography>
           </MDBox>
         </MDBox>
@@ -100,14 +98,13 @@ function Projects() {
       </MDBox>
       <MDBox>
         <div className="block2">
-          <Iframe url="http://163.180.179.152:5000"
+          <Iframe url="https://quantum-computing.ibm.com/composer/files/new?initial=N4IgdghgtgpiBcICqYAuBLVAbGATABAMboBOhArpiADQgCOEAzlAiAPIAKAogHICKAQQDKAWXwAmAHQAGANwAdMOjCEs5XDHzz6MLOgBGARknLC2hWEV0SMAOb46AbQAsAXQuEb9wi-eKAHg6O0n5gAF5B4qEAFkGGoSRhYQAUAA7oAPTiAJSRrtRBAMyhEU7xFvoQJCToMCQOsvgZGfgAAqnRTDAAIuiMANaKsEzkNkEh%2BAC0AHxEwe40IBqMnuipGAD2YKwgAL5AA"
             width="100%"
-            height="1000"
+            height="920"
             id="framenn"
             className=""
             display="block"
             position="overflow"
-            styles={{left: 0, right: 0, height: 920}}
             frameBorder="0"
             scrolling="no"
             />
@@ -117,4 +114,4 @@ function Projects() {
   );
 }
 
-export default Projects;
+export default ProjectsIBM;

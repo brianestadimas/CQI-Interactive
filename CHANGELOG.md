@@ -96,10 +96,10 @@
   - StatisticsCards
     - ComplexStatisticsCard
 - Charts
-  - BarCharts
+  - Infographics
     - HorizontalBarChart
     - VerticalBarChart
-    - ReportsBarChart
+    - DashboardInfo1
   - BubbleChart
   - DoughnutCharts
     - DefaultDoughnutChart

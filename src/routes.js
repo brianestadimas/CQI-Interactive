@@ -39,7 +39,6 @@ Coded by www.creative-tim.com
 import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
 import Billing from "layouts/billing";
-import RTL from "layouts/rtl";
 import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
@@ -59,59 +58,52 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Tables",
+    name: "Our People",
     key: "tables",
-    icon: <Icon fontSize="small">table_view</Icon>,
+    icon: <Icon fontSize="small">person</Icon>,
     route: "/tables",
     component: <Tables />,
   },
+
   {
     type: "collapse",
-    name: "Billing",
-    key: "billing",
-    icon: <Icon fontSize="small">receipt_long</Icon>,
-    route: "/billing",
-    component: <Billing />,
-  },
-  {
-    type: "collapse",
-    name: "RTL",
-    key: "rtl",
-    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-    route: "/rtl",
-    component: <RTL />,
-  },
-  {
-    type: "collapse",
-    name: "Notifications",
-    key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
-    component: <Notifications />,
-  },
-  {
-    type: "collapse",
-    name: "Profile",
-    key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "/profile",
+    name: "Highlighted Projects",
+    key: "project",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/project",
     component: <Profile />,
   },
   {
     type: "collapse",
-    name: "Sign In",
-    key: "sign-in",
-    icon: <Icon fontSize="small">login</Icon>,
-    route: "/authentication/sign-in",
-    component: <SignIn />,
+    name: "Research & Papers",
+    key: "research",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/research",
+    component: <Tables />,
   },
   {
     type: "collapse",
-    name: "Sign Up",
-    key: "sign-up",
-    icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/sign-up",
-    component: <SignUp />,
+    name: "Quantum Simulation",
+    key: "qsimulation",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/qsimulation",
+    component: <Tables />,
+  },
+  {
+    type: "collapse",
+    name: "Quantum Computing",
+    key: "qcomputing",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/qcomputing",
+    component: <Tables />,
+  },
+  {
+    type: "collapse",
+    name: "Gallery",
+    key: "gallery",
+    icon: <Icon fontSize="small">receipt_long</Icon>,
+    route: "/gallery",
+    component: <Billing />,
   },
 ];
 

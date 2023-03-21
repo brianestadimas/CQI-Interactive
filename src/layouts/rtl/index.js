@@ -25,12 +25,12 @@ import MDBox from "components/MDBox";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
+import DashboardInfo1 from "examples/Charts/Infographics/DashboardInfo1";
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
 // Data
-import reportsBarChartData from "layouts/rtl/data/reportsBarChartData";
+import DashboardInfo1 from "layouts/rtl/data/DashboardInfo1";
 import reportsLineChartData from "layouts/rtl/data/reportsLineChartData";
 
 // RTL components
@@ -120,12 +120,12 @@ function RTL() {
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
-                <ReportsBarChart
+                <DashboardInfo1
                   color="info"
                   title="مشاهدات الموقع"
                   description="آخر أداء للحملة"
                   date="الحملة أرسلت قبل يومين"
-                  chart={reportsBarChartData}
+                  chart={DashboardInfo1}
                 />
               </MDBox>
             </Grid>

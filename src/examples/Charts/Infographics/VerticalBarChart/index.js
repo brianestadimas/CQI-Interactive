@@ -30,7 +30,7 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
 // VerticalBarChart configurations
-import configs from "examples/Charts/BarCharts/VerticalBarChart/configs";
+import configs from "examples/Charts/Infographics/VerticalBarChart/configs";
 
 // Material Dashboard 2 React base styles
 import colors from "assets/theme/base/colors";

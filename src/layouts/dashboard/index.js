@@ -23,17 +23,25 @@ import MDBox from "components/MDBox";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
+import DashboardInfo1 from "examples/Charts/Infographics/DashboardInfo1";
+import DashboardInfo2 from "examples/Charts/Infographics/DashboardInfo2";
+import DashboardProjects from "examples/Charts/Infographics/DashboardProjects";
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
 // Data
-import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 
 // Dashboard components
 import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
+
+// Dashboard components
+import ProjectsIBM from "layouts/dashboard/components/ProjectsIBM";
+
+// Dashboard components
+import ProjectsQisk from "layouts/dashboard/components/ProjectsQisk";
+import Icon from "@mui/material/Icon";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
@@ -47,13 +55,13 @@ function Dashboard() {
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="dark"
-                icon="weekend"
-                title="Bookings"
-                count={281}
+                icon="biotech"
+                title="Quantum Fact"
+                count="True Random"
                 percentage={{
                   color: "success",
-                  amount: "+55%",
-                  label: "than lask week",
+                  amount: "Random",
+                  label: "that only occurs on Quantum State",
                 }}
               />
             </MDBox>
@@ -61,13 +69,12 @@ function Dashboard() {
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
-                icon="leaderboard"
-                title="Today's Users"
-                count="2,300"
+                icon="pets"
+                title="Quantum Fact"
+                count="Schrodinger's Cat"
                 percentage={{
                   color: "success",
-                  amount: "+3%",
-                  label: "than last month",
+                  label: "Paradox in quantum mechanics, can you solve?",
                 }}
               />
             </MDBox>
@@ -76,13 +83,13 @@ function Dashboard() {
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="success"
-                icon="store"
-                title="Revenue"
-                count="34k"
+                icon="attractions"
+                title="Quantum Fact"
+                count="IBM Quantum CPU"
                 percentage={{
                   color: "success",
-                  amount: "+1%",
-                  label: "than yesterday",
+                  amount: "IBM Intel",
+                  label: "Next Generations Computer",
                 }}
               />
             </MDBox>
@@ -92,12 +99,12 @@ function Dashboard() {
               <ComplexStatisticsCard
                 color="primary"
                 icon="person_add"
-                title="Followers"
-                count="+91"
+                title="Quantum Fact"
+                count="Multiverse"
                 percentage={{
                   color: "success",
-                  amount: "",
-                  label: "Just updated",
+                  amount: "Theory for",
+                  label: "Quantum Superposition on Universe",
                 }}
               />
             </MDBox>
@@ -107,27 +114,21 @@ function Dashboard() {
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
-                <ReportsBarChart
+                <DashboardInfo1
                   color="info"
-                  title="website views"
-                  description="Last Campaign Performance"
-                  date="campaign sent 2 days ago"
-                  chart={reportsBarChartData}
+                  title="What We Do"
+                  description="Our research group focuses on developing solutions to a broad spectrum of fundamental problems involving the design, analysis, and advance of wireless communication, machine intelligence, and quantum information science."
+                  date="Campaign 2 days ago"
                 />
               </MDBox>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
-                <ReportsLineChart
-                  color="success"
-                  title="daily sales"
-                  description={
-                    <>
-                      (<strong>+15%</strong>) increase in today sales.
-                    </>
-                  }
-                  date="updated 4 min ago"
-                  chart={sales}
+                <DashboardInfo2
+                  color="info"
+                  title="Research - Patent"
+                  description="Our research group focuses on developing solutions to a broad spectrum of fundamental problems involving the design, analysis, and advance of wireless communication, machine intelligence, and quantum information science."
+                  date="Campaign 2 days ago"
                 />
               </MDBox>
             </Grid>
@@ -135,25 +136,53 @@ function Dashboard() {
               <MDBox mb={3}>
                 <ReportsLineChart
                   color="dark"
-                  title="completed tasks"
-                  description="Last Campaign Performance"
-                  date="just updated"
+                  title="Professor Hyundong Shin"
+                  description="He received the IEEE William R. Bennett Prize Paper Award (2012) and the IEEE Guglielmo Marconi Prize Paper Award (2008). He served as a Publicity co-chair for the IEEE PIMRC (2018) and a Technical Program co-chair for the IEEE WCNC (PHY Track 2009), the IEEE Globecom (Communication Theory Symposium 2012, Cognitive Radio and Networks Symposium 2016)"
+                  date="Prof. Hyundong Shin has been elevated to IEEE Fellow"
                   chart={tasks}
                 />
               </MDBox>
             </Grid>
           </Grid>
         </MDBox>
-        <MDBox>
+        <MDBox mb={3}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={8}>
+            <Grid item xs={12} md={6} lg={12}>
               <Projects />
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
+            {/* <Grid item xs={12} md={6} lg={4}>
               <OrdersOverview />
-            </Grid>
+            </Grid> */}
           </Grid>
         </MDBox>
+      </MDBox>
+      <MDBox mb={3}>
+        <DashboardProjects
+          color="info"
+          title="Research & Projects"
+          description="Our research group focuses on developing solutions to a broad spectrum of fundamental problems involving the design, analysis, and advance of wireless communication, machine intelligence, and quantum information science."
+          date="Campaign 2 days ago"
+        />
+      </MDBox>
+      <MDBox mb={3}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6} lg={12}>
+            <ProjectsQisk />
+          </Grid>
+          {/* <Grid item xs={12} md={6} lg={4}>
+              <OrdersOverview />
+            </Grid> */}
+        </Grid>
+      </MDBox>
+      <MDBox mb={3}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6} lg={12}>
+            <ProjectsIBM />
+          </Grid>
+          {/* <Grid item xs={12} md={6} lg={4}>
+              <OrdersOverview />
+            </Grid> */}
+        </Grid>
       </MDBox>
       <Footer />
     </DashboardLayout>

@@ -24,6 +24,8 @@ import Icon from "@mui/material/Icon";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+import MDButton from "components/MDButton"; 
+import Grid from "@mui/material/Grid";
 
 function ComplexStatisticsCard({ color, title, count, percentage, icon }) {
   return (
@@ -53,6 +55,13 @@ function ComplexStatisticsCard({ color, title, count, percentage, icon }) {
           <MDTypography variant="h4">{count}</MDTypography>
         </MDBox>
       </MDBox>
+      <Grid container spacing={8}>
+        <Grid item md={1} mt={-1.5} ml={2}>
+          <MDButton variant="gradient" color="primary" size="small">
+              Read
+          </MDButton>
+        </Grid>
+      </Grid>
       <Divider />
       <MDBox pb={2} px={2}>
         <MDTypography component="p" variant="button" color="text" display="flex">

@@ -33,7 +33,7 @@ import data from "layouts/dashboard/components/Projects/data";
 import "./style.css"
 import Iframe from 'react-iframe'
 
-function Projects() {
+function ProjectsQisk() {
   const { columns, rows } = data();
   const [menu, setMenu] = useState(null);
   const ref = useRef(null);
@@ -72,22 +72,20 @@ function Projects() {
       <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
         <MDBox>
           <MDTypography variant="h6" gutterBottom>
-
-          <Icon
+            Neural Network
+          </MDTypography>
+          <MDBox display="flex" alignItems="center" lineHeight={0}>
+            <Icon
               sx={{
                 fontWeight: "bold",
                 color: ({ palette: { info } }) => info.main,
-                mt: 0.5,
-                mr: 1,
+                mt: -0.5,
               }}
             >
-              monitor
+              done
             </Icon>
-            Quantum Circuit for Neural Network
-          </MDTypography>
-          <MDBox display="flex" alignItems="center" lineHeight={0}>
             <MDTypography variant="button" fontWeight="regular" color="text">
-            Most Quantum neural networks are developed as feed-forward networks. Similar to their classical counterparts, this structure intakes input from one layer of qubits, and passes that input onto another layer of qubits. This layer of qubits evaluates this information and passes on the output to the next layer.
+              &nbsp;<strong>30 done</strong> this month
             </MDTypography>
           </MDBox>
         </MDBox>
@@ -100,7 +98,7 @@ function Projects() {
       </MDBox>
       <MDBox>
         <div className="block2">
-          <Iframe url="http://163.180.179.152:5000"
+          <Iframe url="https://algassert.com/quirk#circuit=%7B%22cols%22%3A%5B%5D%7D"
             width="100%"
             height="1000"
             id="framenn"
@@ -117,4 +115,4 @@ function Projects() {
   );
 }
 
-export default Projects;
+export default ProjectsQisk;
