@@ -39,9 +39,10 @@ import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 // Dashboard components
 import ProjectsIBM from "layouts/dashboard/components/ProjectsIBM";
 
-// Dashboard   components
+// Dashboard components
 import ProjectsQisk from "layouts/dashboard/components/ProjectsQisk";
 import Icon from "@mui/material/Icon";
+import QuantumGraph from "components/QuantumGraph";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
@@ -143,6 +144,16 @@ function Dashboard() {
                 />
               </MDBox>
             </Grid>
+          </Grid>
+        </MDBox>
+        <MDBox mb={3}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={6} lg={12}>
+              <QuantumGraph />
+            </Grid>
+            {/* <Grid item xs={12} md={6} lg={4}>
+              <OrdersOverview />
+            </Grid> */}
           </Grid>
         </MDBox>
         <MDBox mb={3}>
