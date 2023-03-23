@@ -30,8 +30,8 @@ import DataTable from "examples/Tables/DataTable";
 
 // Data
 import data from "layouts/dashboard/components/Projects/data";
-import "./style.css"
-import Iframe from 'react-iframe'
+import "./style.css";
+import Iframe from "react-iframe";
 
 function Projects() {
   const { columns, rows } = data();
@@ -40,7 +40,6 @@ function Projects() {
 
   useEffect(() => {
     const el = ref.current;
-    console.log(el);
   }, [ref]);
 
   const openMenu = ({ currentTarget }) => setMenu(currentTarget);
@@ -72,8 +71,7 @@ function Projects() {
       <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
         <MDBox>
           <MDTypography variant="h6" gutterBottom>
-
-          <Icon
+            <Icon
               sx={{
                 fontWeight: "bold",
                 color: ({ palette: { info } }) => info.main,
@@ -87,7 +85,10 @@ function Projects() {
           </MDTypography>
           <MDBox display="flex" alignItems="center" lineHeight={0}>
             <MDTypography variant="button" fontWeight="regular" color="text">
-            Most Quantum neural networks are developed as feed-forward networks. Similar to their classical counterparts, this structure intakes input from one layer of qubits, and passes that input onto another layer of qubits. This layer of qubits evaluates this information and passes on the output to the next layer.
+              Most Quantum neural networks are developed as feed-forward networks. Similar to their
+              classical counterparts, this structure intakes input from one layer of qubits, and
+              passes that input onto another layer of qubits. This layer of qubits evaluates this
+              information and passes on the output to the next layer.
             </MDTypography>
           </MDBox>
         </MDBox>
@@ -100,17 +101,18 @@ function Projects() {
       </MDBox>
       <MDBox>
         <div className="block2">
-          <Iframe url="http://163.180.179.152:5000"
+          <Iframe
+            url="http://163.180.179.152:5000"
             width="100%"
             height="1000"
             id="framenn"
             className=""
             display="block"
             position="overflow"
-            styles={{left: 0, right: 0, height: 920}}
+            styles={{ left: 0, right: 0, height: 920 }}
             frameBorder="0"
             scrolling="no"
-            />
+          />
         </div>
       </MDBox>
     </Card>

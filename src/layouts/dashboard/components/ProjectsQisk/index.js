@@ -30,8 +30,8 @@ import DataTable from "examples/Tables/DataTable";
 
 // Data
 import data from "layouts/dashboard/components/Projects/data";
-import "./style.css"
-import Iframe from 'react-iframe'
+import "./style.css";
+import Iframe from "react-iframe";
 
 function ProjectsQisk() {
   const { columns, rows } = data();
@@ -40,7 +40,6 @@ function ProjectsQisk() {
 
   useEffect(() => {
     const el = ref.current;
-    console.log(el);
   }, [ref]);
 
   const openMenu = ({ currentTarget }) => setMenu(currentTarget);
@@ -98,17 +97,18 @@ function ProjectsQisk() {
       </MDBox>
       <MDBox>
         <div className="block2">
-          <Iframe url="https://algassert.com/quirk#circuit=%7B%22cols%22%3A%5B%5D%7D"
+          <Iframe
+            url="https://algassert.com/quirk#circuit=%7B%22cols%22%3A%5B%5D%7D"
             width="100%"
             height="1000"
             id="framenn"
             className=""
             display="block"
             position="overflow"
-            styles={{left: 0, right: 0, height: 920}}
+            styles={{ left: 0, right: 0, height: 920 }}
             frameBorder="0"
             scrolling="no"
-            />
+          />
         </div>
       </MDBox>
     </Card>

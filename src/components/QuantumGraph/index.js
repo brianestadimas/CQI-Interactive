@@ -20,6 +20,7 @@ import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Grid from "@mui/material/Grid";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -32,7 +33,6 @@ function QuantumGraph() {
 
   useEffect(() => {
     const el = ref.current;
-    console.log(el);
   }, [ref]);
 
   const openMenu = ({ currentTarget }) => setMenu(currentTarget);
@@ -72,19 +72,36 @@ function QuantumGraph() {
                 mr: 1,
               }}
             >
-              monitor
+              sensors
             </Icon>
-            Quantum Circuit for Neural Network
+            Quantum Communications
           </MDTypography>
+
           <MDBox display="flex" alignItems="center" lineHeight={0}>
-            <MDTypography variant="button" fontWeight="regular" color="text">
-              Most Quantum neural networks are developed as feed-forward networks. Similar to their
-              classical counterparts, this structure intakes input from one layer of qubits, and
-              passes that input onto another layer of qubits. This layer of qubits evaluates this
-              information and passes on the output to the next layer.
-            </MDTypography>
+            <Grid container style={{ textAlign: "justify" }} spacing={5}>
+              <Grid item md={6}>
+                <MDTypography variant="button" fontWeight="regular" color="text">
+                  Quantum communication is a way of sending information using quantum mechanics, the
+                  science that studies the behavior of particles at a very small scale. It offers
+                  several benefits over classical communication, which relies on classical physics.
+                  One of the main benefits of quantum communication is that it provides a{" "}
+                  <b>way of sending information that is completely secure and faster</b>.
+                </MDTypography>
+              </Grid>
+              <Grid item md={6}>
+                <MDTypography variant="button" fontWeight="regular" color="text">
+                  This makes quantum communication ideal for sending sensitive information, such as
+                  financial transactions or military secrets. Finally, quantum communication has the
+                  potential to revolutionize computing. Quantum computers are faster and more
+                  powerful than classical computers, and they rely on quantum communication to
+                  operate. This means that quantum communication could enable us to solve complex
+                  problems that are currently impossible to solve with classical computers.
+                </MDTypography>
+              </Grid>
+            </Grid>
           </MDBox>
         </MDBox>
+
         <MDBox color="text" px={2}>
           <Icon sx={{ cursor: "pointer", fontWeight: "bold" }} fontSize="small" onClick={openMenu}>
             more_vert
@@ -93,7 +110,7 @@ function QuantumGraph() {
         {renderMenu}
       </MDBox>
       <MDBox>
-        <div style={{ height: "800px" }}>
+        <div style={{ height: "820px" }}>
           <Graph />
         </div>
       </MDBox>

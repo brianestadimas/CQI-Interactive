@@ -30,8 +30,8 @@ import DataTable from "examples/Tables/DataTable";
 
 // Data
 import data from "layouts/dashboard/components/Projects/data";
-import "./style.css"
-import Iframe from 'react-iframe'
+import "./style.css";
+import Iframe from "react-iframe";
 
 function ProjectsIBM() {
   const { columns, rows } = data();
@@ -40,7 +40,6 @@ function ProjectsIBM() {
 
   useEffect(() => {
     const el = ref.current;
-    console.log(el);
   }, [ref]);
 
   const openMenu = ({ currentTarget }) => setMenu(currentTarget);
@@ -85,7 +84,14 @@ function ProjectsIBM() {
               done
             </Icon> */}
             <MDTypography variant="button" fontWeight="regular" color="text">
-            we demonstrate that a careful circuit decomposition allows us to experimentally implement a vast number of fundamental open quantum systems models for one and two qubits. Not only are we able to generate different classes of open quantum dynamics, namely, unital (e.g., pure dephasing dynamical maps), non-unital (e.g., amplitude damping dynamical maps), phase covariant, and non-phase covariant (e.g., Pauli dynamical maps), but also we can explore the Markovian to non-Markovian crossover, including the recently discovered examples of essential16 and eternal54,55 non-Markovianity.
+              we demonstrate that a careful circuit decomposition allows us to experimentally
+              implement a vast number of fundamental open quantum systems models for one and two
+              qubits. Not only are we able to generate different classes of open quantum dynamics,
+              namely, unital (e.g., pure dephasing dynamical maps), non-unital (e.g., amplitude
+              damping dynamical maps), phase covariant, and non-phase covariant (e.g., Pauli
+              dynamical maps), but also we can explore the Markovian to non-Markovian crossover,
+              including the recently discovered examples of essential16 and eternal54,55
+              non-Markovianity.
             </MDTypography>
           </MDBox>
         </MDBox>
@@ -98,7 +104,8 @@ function ProjectsIBM() {
       </MDBox>
       <MDBox>
         <div className="block2">
-          <Iframe url="https://quantum-computing.ibm.com/composer/files/new?initial=N4IgdghgtgpiBcICqYAuBLVAbGATABAMboBOhArpiADQgCOEAzlAiAPIAKAogHICKAQQDKAWXwAmAHQAGANwAdMOjCEs5XDHzz6MLOgBGARknLC2hWEV0SMAOb46AbQAsAXQuEb9wi-eKAHg6O0n5gAF5B4qEAFkGGoSRhYQAUAA7oAPTiAJSRrtRBAMyhEU7xFvoQJCToMCQOsvgZGfgAAqnRTDAAIuiMANaKsEzkNkEh%2BAC0AHxEwe40IBqMnuipGAD2YKwgAL5AA"
+          <Iframe
+            url="https://quantum-computing.ibm.com/composer/files/new?initial=N4IgdghgtgpiBcICqYAuBLVAbGATABAMboBOhArpiADQgCOEAzlAiAPIAKAogHICKAQQDKAWXwAmAHQAGANwAdMOjCEs5XDHzz6MLOgBGARknLC2hWEV0SMAOb46AbQAsAXQuEb9wi-eKAHg6O0n5gAF5B4qEAFkGGoSRhYQAUAA7oAPTiAJSRrtRBAMyhEU7xFvoQJCToMCQOsvgZGfgAAqnRTDAAIuiMANaKsEzkNkEh%2BAC0AHxEwe40IBqMnuipGAD2YKwgAL5AA"
             width="100%"
             height="920"
             id="framenn"
@@ -107,7 +114,7 @@ function ProjectsIBM() {
             position="overflow"
             frameBorder="0"
             scrolling="no"
-            />
+          />
         </div>
       </MDBox>
     </Card>
