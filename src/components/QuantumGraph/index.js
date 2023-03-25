@@ -26,6 +26,8 @@ import Grid from "@mui/material/Grid";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import Graph from "./graph";
+import BlochSphere from "components/BlochSphere";
+import Steps from "components/Steps";
 
 function QuantumGraph() {
   const [menu, setMenu] = useState(null);
@@ -79,7 +81,7 @@ function QuantumGraph() {
 
           <MDBox display="flex" alignItems="center" lineHeight={0}>
             <Grid container style={{ textAlign: "justify" }} spacing={5}>
-              <Grid item md={6}>
+              <Grid item md={12}>
                 <MDTypography variant="button" fontWeight="regular" color="text">
                   Quantum communication is a way of sending information using quantum mechanics, the
                   science that studies the behavior of particles at a very small scale. It offers
@@ -88,15 +90,25 @@ function QuantumGraph() {
                   <b>way of sending information that is completely secure and faster</b>.
                 </MDTypography>
               </Grid>
-              <Grid item md={6}>
+              {/* <Grid item md={6}>
                 <MDTypography variant="button" fontWeight="regular" color="text">
                   This makes quantum communication ideal for sending sensitive information, such as
                   financial transactions or military secrets. Finally, quantum communication has the
                   potential to revolutionize computing. Quantum computers are faster and more
                   powerful than classical computers, and they rely on quantum communication to
-                  operate. This means that quantum communication could enable us to solve complex
-                  problems that are currently impossible to solve with classical computers.
+                  operate.
                 </MDTypography>
+              </Grid> */}
+            </Grid>
+          </MDBox>
+
+          <MDBox display="flex" alignItems="center" lineHeight={0}>
+            <Grid container style={{ textAlign: "justify" }} spacing={5}>
+              <Grid item md={12}>
+                <div>
+                  <Steps />
+                  {/* <BlochSphere theta="100" phi="100" /> */}
+                </div>
               </Grid>
             </Grid>
           </MDBox>

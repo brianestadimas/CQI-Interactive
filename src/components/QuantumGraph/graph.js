@@ -40,6 +40,12 @@ const initialNodes = [
     position: { x: 70, y: 250 },
     data: { name: "PC-Bob", type: "pc", value: 1.0, idx: 3 },
   },
+  {
+    id: "node-4",
+    type: "textUpdater",
+    position: { x: 100, y: 350 },
+    data: { name: "PC-Charlie", type: "pc", value: 1.0, idx: 4 },
+  },
 ];
 
 const handleStyle = { left: 10 };

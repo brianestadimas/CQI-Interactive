@@ -51,66 +51,6 @@ function Dashboard() {
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox py={3}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                color="dark"
-                icon="biotech"
-                title="Quantum Fact"
-                count="True Random"
-                percentage={{
-                  color: "success",
-                  amount: "Random",
-                  label: "that only occurs on Quantum State",
-                }}
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                icon="pets"
-                title="Quantum Fact"
-                count="Schrodinger's Cat"
-                percentage={{
-                  color: "success",
-                  label: "Paradox in quantum mechanics, can you solve?",
-                }}
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                color="success"
-                icon="attractions"
-                title="Quantum Fact"
-                count="IBM Quantum CPU"
-                percentage={{
-                  color: "success",
-                  amount: "IBM Intel",
-                  label: "Next Generations Computer",
-                }}
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                color="primary"
-                icon="person_add"
-                title="Quantum Fact"
-                count="Multiverse"
-                percentage={{
-                  color: "success",
-                  amount: "Theory for",
-                  label: "Quantum Superposition on Universe",
-                }}
-              />
-            </MDBox>
-          </Grid>
-        </Grid>
         <MDBox mt={4.5}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={4}>
