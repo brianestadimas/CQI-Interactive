@@ -106,7 +106,7 @@ function Projects() {
             width="100%"
             height="1000"
             id="framenn"
-            className=""
+            className="iframe-zoom"
             display="block"
             position="overflow"
             styles={{ left: 0, right: 0, height: 920 }}

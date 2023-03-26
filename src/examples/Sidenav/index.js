@@ -105,7 +105,12 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
         </Link>
       ) : (
         <NavLink key={key} to={route}>
-          <SidenavCollapse name={name} icon={icon} active={key === collapseName} />
+          <SidenavCollapse
+            name={name}
+            icon={icon}
+            active={key === collapseName}
+            style={{ marginLeft: 8 }}
+          />
         </NavLink>
       );
     } else if (type === "title") {
@@ -146,7 +151,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       variant="permanent"
       ownerState={{ transparentSidenav, whiteSidenav, miniSidenav, darkMode }}
     >
-      <MDBox pt={3} pb={1} px={4} textAlign="center">
+      <MDBox pt={3} pb={1} px={2} textAlign="center">
         <MDBox
           display={{ xs: "block", xl: "none" }}
           position="absolute"

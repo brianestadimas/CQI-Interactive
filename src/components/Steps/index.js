@@ -1,18 +1,29 @@
-import { Steps, Panel, Placeholder, ButtonGroup, Button, SelectPicker } from "rsuite";
+import { Steps, Panel, ButtonGroup, Button } from "rsuite";
 import React, { useState } from "react";
 import "rsuite/dist/rsuite.css";
 import Grid from "@mui/material/Grid";
 import MDTypography from "components/MDTypography";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import BlochSphere from "components/BlochSphere";
+import bloch from "assets/images/bloch3.png";
+import MDBox from "components/MDBox";
 
 export default function StepsComponent({}) {
   const [step, setStep] = useState(0);
   const [protocol, setProtocol] = useState(1);
   const onChange = (nextStep) => {
     setStep(nextStep < 0 ? 0 : nextStep > 3 ? 3 : nextStep);
+  };
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const onNext = () => onChange(step + 1);
@@ -22,6 +33,35 @@ export default function StepsComponent({}) {
     setProtocol(event.target.value);
   };
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const floatingBloch = () => {
+    return (
+      <div style={{ position: "relative", marginTop: 30 }}>
+        <Button appearance="primary" onClick={() => setIsOpen(!isOpen)}>
+          {"Open Bloch Sphere ->"}
+        </Button>
+
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            zIndex: 1,
+            display: isOpen ? "flex" : "none",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          onClick={() => setIsOpen(false)}
+        >
+          <BlochSphere />
+        </div>
+      </div>
+    );
+  };
   const generateDesc = (protocol) => {
     //Switch
     switch (protocol) {
@@ -42,7 +82,7 @@ export default function StepsComponent({}) {
         return (
           <div>
             <Grid container style={{ textAlign: "justify" }} spacing={5}>
-              <Grid item md={5}>
+              <Grid item md={6}>
                 <MDTypography variant="button" fontWeight="medium" color="text">
                   Select Desired Protocol Based on CQILAB Research
                 </MDTypography>
@@ -75,7 +115,31 @@ export default function StepsComponent({}) {
                   {generateDesc(protocol)}
                 </MDTypography>
               </Grid>
-              <Grid item md={6}></Grid>
+              <Grid item md={2} mr={3} mt={-4}>
+                <MDTypography variant="button" fontWeight="medium" color="text">
+                  Set Quantum State (Optional)
+                </MDTypography>
+                <br />
+                <MDTypography
+                  variant="button"
+                  fontWeight="regular"
+                  color="text"
+                  style={{ fontSize: 12 }}
+                >
+                  Select the quantum state angle to be used in the protocol
+                </MDTypography>
+                {floatingBloch()}
+                {/* <BlochSphere /> */}
+              </Grid>
+              <Grid item md={2} mr={3} mt={-7}>
+                <MDBox
+                  component="img"
+                  src={bloch}
+                  alt="Brand"
+                  width="22rem"
+                  onClick={() => setIsOpen(!isOpen)}
+                />
+              </Grid>
             </Grid>
           </div>
         );
@@ -91,15 +155,17 @@ export default function StepsComponent({}) {
   };
 
   return (
-    <div style={{ padding: 30 }}>
+    <div style={{ paddingTop: 30, paddingLeft: 20, paddingRight: 20 }}>
       <Steps current={step}>
-        <Steps.Item title="Protocol" />
+        <Steps.Item title="Protocol & State" />
         <Steps.Item title="Map Definition" />
         <Steps.Item title="Processing" />
         <Steps.Item title="Result" />
       </Steps>
       <hr />
-      <Panel header={`Step: ${step + 1}`}>{generateContentSteps(step)}</Panel>
+      <Panel style={{ marginTop: -20 }} header={`Step: ${step + 1}`}>
+        {generateContentSteps(step)}
+      </Panel>
       <hr />
       <ButtonGroup>
         <Button onClick={onPrevious} disabled={step === 0}>

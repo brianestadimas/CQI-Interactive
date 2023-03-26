@@ -26,7 +26,7 @@ import Grid from "@mui/material/Grid";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import Graph from "./graph";
-import BlochSphere from "components/BlochSphere";
+
 import Steps from "components/Steps";
 
 function QuantumGraph() {

@@ -21,7 +21,7 @@ export default styled(Drawer)(({ theme, ownerState }) => {
   const { palette, boxShadows, transitions, breakpoints, functions } = theme;
   const { transparentSidenav, whiteSidenav, miniSidenav, darkMode } = ownerState;
 
-  const sidebarWidth = 250;
+  const sidebarWidth = 210;
   const { transparent, gradients, white, background } = palette;
   const { xxl } = boxShadows;
   const { pxToRem, linearGradient } = functions;
@@ -48,7 +48,7 @@ export default styled(Drawer)(({ theme, ownerState }) => {
     [breakpoints.up("xl")]: {
       boxShadow: transparentSidenav ? "none" : xxl,
       marginBottom: transparentSidenav ? 0 : "inherit",
-      left: "0",
+      left: "-10px",
       width: sidebarWidth,
       transform: "translateX(0)",
       transition: transitions.create(["width", "background-color"], {

@@ -69,6 +69,19 @@ export default function App() {
   const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
 
+  // useEffect(() => {
+  //   const setZoom = () => {
+  //     const isLaptop = window.matchMedia("(max-width: 1704px)").matches;
+  //     const zoomLevel = isLaptop ? "80%" : "100%";
+  //     document.body.style.zoom = zoomLevel;
+  //   };
+  //   setZoom();
+  //   window.addEventListener("resize", setZoom);
+  //   return () => {
+  //     window.removeEventListener("resize", setZoom);
+  //   };
+  // }, []);
+
   // Cache for the rtl
   useMemo(() => {
     const cacheRtl = createCache({
@@ -127,8 +140,8 @@ export default function App() {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      width="3.25rem"
-      height="3.25rem"
+      width="2.25rem"
+      height="2.25rem"
       bgColor="white"
       shadow="sm"
       borderRadius="50%"
@@ -155,7 +168,7 @@ export default function App() {
             <Sidenav
               color={sidenavColor}
               brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-              brandName="Material Dashboard 2"
+              brandName="CQILAB"
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
@@ -179,7 +192,7 @@ export default function App() {
           <Sidenav
             color={sidenavColor}
             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-            brandName="Material Dashboard 2"
+            brandName="CQILAB Interactive"
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
