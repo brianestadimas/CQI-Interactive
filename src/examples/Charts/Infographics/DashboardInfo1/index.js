@@ -29,17 +29,17 @@ import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
 
 // DashboardInfo1 configurations
-import Iframe from 'react-iframe'
+import Iframe from "react-iframe";
 import Grid from "@mui/material/Grid";
 
 function DashboardInfo1({ color, title, description, date }) {
-
   return (
     <Card sx={{ height: "100%" }}>
       <MDBox padding="1rem">
         {useMemo(
           () => (
-            <Iframe url="https://www.youtube.com/embed/bEbWEEWYBpE"
+            <Iframe
+              url="https://www.youtube.com/embed/bEbWEEWYBpE"
               width="100%"
               height="200"
               id="framenn"
@@ -49,8 +49,8 @@ function DashboardInfo1({ color, title, description, date }) {
               frameBorder="0"
               scrolling="no"
               allowFullScreen
-              styles={{marginTop:-40}}
-              />
+              styles={{ marginTop: -40 }}
+            />
           ),
           [color]
         )}
@@ -59,72 +59,78 @@ function DashboardInfo1({ color, title, description, date }) {
             {title}
           </MDTypography>
           <MDTypography component="div" variant="button" color="text" fontWeight="light">
-          <Grid container spacing={8}>
-            <Grid item md={1}>
-                <MDBox 
+            <Grid container spacing={8}>
+              <Grid item md={1}>
+                <MDBox
                   mt={1}
-                    variant="gradient"
-                    bgColor="dark"
-                    color="light"
-                    coloredShadow="dark"
-                    borderRadius="xl"
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    width="3rem"
-                    height="3rem"
-                  >
-                <Icon fontSize="medium" color="inherit">
-                  weekend
-                </Icon>
-              </MDBox>
+                  variant="gradient"
+                  bgColor="dark"
+                  color="light"
+                  coloredShadow="dark"
+                  borderRadius="xl"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  width="3rem"
+                  height="3rem"
+                >
+                  <Icon fontSize="medium" color="inherit">
+                    weekend
+                  </Icon>
+                </MDBox>
+              </Grid>
+              <Grid item md={10} mt={1}>
+                Develop Solutions for{" "}
+                <b>Quantum Information Science, Wireless Communication and Machine Intelligence</b>
+              </Grid>
             </Grid>
-            <Grid item md={10} mt={1}>
-                Develop Solutions for <b>Quantum Information Science, Wireless Communication and Machine Intelligence</b>
-            </Grid>
-          </Grid>
-          <Grid container spacing={8}>
-            <Grid item md={1}>
-                <MDBox 
+            <Grid container spacing={8}>
+              <Grid item md={1}>
+                <MDBox
                   mt={1}
-                    variant="gradient"
-                    bgColor="primary"
-                    color="light"
-                    coloredShadow="dark"
-                    borderRadius="xl"
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    width="3rem"
-                    height="3rem"
-                  >
-                <Icon fontSize="medium" color="inherit">
-                leaderboard
-                </Icon>
-              </MDBox>
+                  variant="gradient"
+                  bgColor="primary"
+                  color="light"
+                  coloredShadow="dark"
+                  borderRadius="xl"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  width="3rem"
+                  height="3rem"
+                >
+                  <Icon fontSize="medium" color="inherit">
+                    leaderboard
+                  </Icon>
+                </MDBox>
+              </Grid>
+              <Grid item md={10} mt={1}>
+                Design, Analysis, and Advance for <b>Quantum Information Science</b>
+              </Grid>
             </Grid>
-            <Grid item md={10} mt={1}>
-              Design, Analysis, and Advance for <b>Quantum Information Science</b>
-            </Grid>
-          </Grid>
-          
           </MDTypography>
           <Divider />
           <MDBox display="flex" alignItems="center">
-          <Grid container spacing={8}>
-            <Grid item md={8}>
-              <MDTypography variant="button" color="text" lineHeight={1} sx={{ mt: 0.15, mr: 0.5 }}>
-                <Icon>schedule</Icon>
-              </MDTypography>
-              <MDTypography variant="button" color="text" fontWeight="light">
-                {date}
-              </MDTypography>
-            </Grid>
-            <Grid item md={3}>
-            <MDButton variant="gradient" color="info" size="small">
-                Read&nbsp;more
-            </MDButton>
-            </Grid>
+            <Grid container spacing={8}>
+              <Grid item md={8}>
+                <MDTypography
+                  variant="button"
+                  color="text"
+                  lineHeight={1}
+                  sx={{ mt: 0.15, mr: 0.5 }}
+                >
+                  <Icon>schedule</Icon>
+                </MDTypography>
+                <MDTypography variant="button" color="text" fontWeight="light">
+                  {date},{" "}
+                  <span style={{ color: "blue", textDecoration: "underline" }}> Read More</span>
+                </MDTypography>
+              </Grid>
+              <Grid item md={4} justifyContent="flex-end">
+                {/* <MDButton variant="gradient" color="info" size="small">
+                  Read&nbsp;more
+                </MDButton> */}
+              </Grid>
             </Grid>
           </MDBox>
         </MDBox>

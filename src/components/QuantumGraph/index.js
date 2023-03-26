@@ -32,10 +32,15 @@ import Steps from "components/Steps";
 function QuantumGraph() {
   const [menu, setMenu] = useState(null);
   const ref = useRef(null);
+  const [protocol, setProtocol] = useState(1);
 
   useEffect(() => {
     const el = ref.current;
   }, [ref]);
+
+  const handleProtocolChange = (eProtocol) => {
+    setProtocol(eProtocol);
+  };
 
   const openMenu = ({ currentTarget }) => setMenu(currentTarget);
   const closeMenu = () => setMenu(null);
@@ -106,7 +111,7 @@ function QuantumGraph() {
             <Grid container style={{ textAlign: "justify" }} spacing={5}>
               <Grid item md={12}>
                 <div>
-                  <Steps />
+                  <Steps onProtocolChange={handleProtocolChange} />
                   {/* <BlochSphere theta="100" phi="100" /> */}
                 </div>
               </Grid>
@@ -123,7 +128,7 @@ function QuantumGraph() {
       </MDBox>
       <MDBox>
         <div style={{ height: "820px" }}>
-          <Graph />
+          <Graph protocol={protocol} />
         </div>
       </MDBox>
     </Card>

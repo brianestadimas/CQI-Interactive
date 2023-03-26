@@ -25,26 +25,59 @@ const initialNodes = [
   {
     id: "node-1",
     type: "textUpdater",
-    position: { x: 90, y: -60 },
+    position: { x: -250, y: -200 },
     data: { name: "PC-Alice", type: "pc", value: 1.0, idx: 1 },
   },
   {
     id: "node-2",
     type: "textUpdater",
-    position: { x: 200, y: 100 },
+    position: { x: -80, y: -50 },
     data: { name: "Repeater", type: "rep", value: 1.0, idx: 2 },
   },
   {
     id: "node-3",
     type: "textUpdater",
-    position: { x: 70, y: 250 },
+    position: { x: 0, y: 70 },
     data: { name: "PC-Bob", type: "pc", value: 1.0, idx: 3 },
   },
   {
     id: "node-4",
     type: "textUpdater",
-    position: { x: 100, y: 350 },
+    position: { x: 100, y: 200 },
     data: { name: "PC-Charlie", type: "pc", value: 1.0, idx: 4 },
+  },
+];
+
+const initialNodes2 = [
+  {
+    id: "node-1",
+    type: "textUpdater",
+    position: { x: 0, y: 0 },
+    data: { name: "Server", type: "rep", value: 1.0, idx: 1 },
+  },
+  {
+    id: "node-2",
+    type: "textUpdater",
+    position: { x: -250, y: -200 },
+    data: { name: "PC-Alice", type: "pc", value: 1.0, idx: 2 },
+  },
+  {
+    id: "node-3",
+    type: "textUpdater",
+    position: { x: 250, y: -200 },
+    data: { name: "PC-Bob", type: "pc", value: 1.0, idx: 3 },
+  },
+  {
+    id: "node-4",
+    type: "textUpdater",
+    position: { x: -350, y: 100 },
+    data: { name: "PC-Charlie", type: "pc", value: 1.0, idx: 4 },
+  },
+  {
+    id: "node-5",
+    type: "textUpdater",
+    position: { x: 200, y: 200 },
+    data: { name: "PC-Delta", type: "pc", value: 1.0, idx: 5 },
   },
 ];
 
@@ -85,7 +118,7 @@ const textUpdater = (data, isConnectable) => {
                   <MDAvatar src={repeater} name="repeater" size="sm" />
                 </div>
                 <div style={{ fontSize: 6, marginTop: 1, textAlign: "center" }}>
-                  <b>Repeater</b>
+                  <b>{data["data"]["name"] ? data["data"]["name"] : "Repeater"}</b>
                 </div>
               </>
             )}
@@ -135,10 +168,18 @@ const textUpdater = (data, isConnectable) => {
 
 const nodeTypes = { textUpdater: textUpdater };
 
-function Flow() {
+function Graph({ protocol }) {
   const defaultViewport = { x: 0, y: 0, zoom: 0.0001 };
   const [nodes, setNodes] = useState(initialNodes);
   const [edges, setEdges] = useState([]);
+
+  useEffect(() => {
+    if (protocol === 1) {
+      setNodes(initialNodes);
+    } else {
+      setNodes(initialNodes2);
+    }
+  }, [protocol]);
 
   const onNodesChange = useCallback(
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -160,6 +201,9 @@ function Flow() {
   const generateNodes = () => {
     const nodeLength = nodes.length;
     const res = [];
+    if (protocol > 1) {
+      return res;
+    }
     for (let i = 0, j = 1; i <= nodeLength * 4; i += 4, j++) {
       const source1 = i + 3;
       const target1 = i + 5;
@@ -212,4 +256,4 @@ function Flow() {
   );
 }
 
-export default Flow;
+export default Graph;

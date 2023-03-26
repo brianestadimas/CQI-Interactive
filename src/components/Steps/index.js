@@ -9,8 +9,9 @@ import Select from "@mui/material/Select";
 import BlochSphere from "components/BlochSphere";
 import bloch from "assets/images/bloch3.png";
 import MDBox from "components/MDBox";
+import PropTypes from "prop-types";
 
-export default function StepsComponent({}) {
+export default function StepsComponent({ onProtocolChange }) {
   const [step, setStep] = useState(0);
   const [protocol, setProtocol] = useState(1);
   const onChange = (nextStep) => {
@@ -31,6 +32,7 @@ export default function StepsComponent({}) {
 
   const handleChange = (event) => {
     setProtocol(event.target.value);
+    onProtocolChange(event.target.value);
   };
 
   const [isOpen, setIsOpen] = useState(false);
@@ -178,3 +180,7 @@ export default function StepsComponent({}) {
     </div>
   );
 }
+
+StepsComponent.propTypes = {
+  handleProtocolChange: PropTypes.func,
+};
