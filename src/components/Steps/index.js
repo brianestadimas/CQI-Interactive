@@ -14,6 +14,7 @@ import PropTypes from "prop-types";
 export default function StepsComponent({ onProtocolChange }) {
   const [step, setStep] = useState(0);
   const [protocol, setProtocol] = useState(1);
+  const [noise, setNoise] = useState(1);
   const onChange = (nextStep) => {
     setStep(nextStep < 0 ? 0 : nextStep > 3 ? 3 : nextStep);
   };
@@ -33,6 +34,10 @@ export default function StepsComponent({ onProtocolChange }) {
   const handleChange = (event) => {
     setProtocol(event.target.value);
     onProtocolChange(event.target.value);
+  };
+
+  const handleChangeNoise = (event) => {
+    setNoise(event.target.value);
   };
 
   const [isOpen, setIsOpen] = useState(false);
@@ -78,13 +83,27 @@ export default function StepsComponent({ onProtocolChange }) {
     }
   };
 
+  const generateDescNoise = (protocol) => {
+    //Switch
+    switch (protocol) {
+      case 1:
+        return "Quantum state teleportation will go without noises and forming perfect fidelity.";
+      case 2:
+        return "This type of noise arises from the interaction of the quantum system with its environment. Environmental noise can cause decoherence, which leads to the loss of quantum coherence and the degradation of the fidelity of the quantum state being teleported.";
+      case 3:
+        return "This type of noise arises from the imperfections in the measurement process used to determine the quantum state of the system. Measurement noise can lead to errors in the teleportation process, as the information about the state of the system is not accurately transmitted to the receiver.";
+      default:
+        return "Quantum state teleportation will go without noises and forming perfect fidelity.";
+    }
+  };
+
   const generateContentSteps = (step) => {
     switch (step) {
       case 0:
         return (
           <div>
             <Grid container style={{ textAlign: "justify" }} spacing={5}>
-              <Grid item md={6}>
+              <Grid item md={5}>
                 <MDTypography variant="button" fontWeight="medium" color="text">
                   Select Desired Protocol Based on CQILAB Research
                 </MDTypography>
@@ -117,7 +136,7 @@ export default function StepsComponent({ onProtocolChange }) {
                   {generateDesc(protocol)}
                 </MDTypography>
               </Grid>
-              <Grid item md={2} mr={3} mt={-4}>
+              <Grid item md={3} mr={3} mt={-4}>
                 <MDTypography variant="button" fontWeight="medium" color="text">
                   Set Quantum State (Optional)
                 </MDTypography>
@@ -128,7 +147,7 @@ export default function StepsComponent({ onProtocolChange }) {
                   color="text"
                   style={{ fontSize: 12 }}
                 >
-                  Select the quantum state angle to be used in the protocol
+                  Define the amplitude amlification using bloch sphere simulator
                 </MDTypography>
                 {floatingBloch()}
                 {/* <BlochSphere /> */}
@@ -146,7 +165,70 @@ export default function StepsComponent({ onProtocolChange }) {
           </div>
         );
       case 1:
-        return <div>Map Definition</div>;
+        return (
+          <div>
+            <Grid container style={{ textAlign: "justify" }} spacing={5}>
+              <Grid item md={6}>
+                <MDTypography variant="button" fontWeight="medium" color="text">
+                  Noise Type
+                </MDTypography>
+                {/* <SelectPicker data={data} block /> */}
+                <br />
+                <FormControl
+                  variant="standard"
+                  sx={{ m: 1, minWidth: "100%", marginTop: 3, marginBottom: 3 }}
+                >
+                  <Select
+                    labelId="demo-simple-select-standard-label"
+                    id="demo-simple-select-standard"
+                    value={noise}
+                    onChange={handleChangeNoise}
+                    // label="Age"
+                  >
+                    <MenuItem value={1}>No Noise</MenuItem>
+                    <MenuItem value={2}>Environmental Noise</MenuItem>
+                    <MenuItem value={3}>Measurement Noise</MenuItem>
+                  </Select>
+                </FormControl>
+                <MDTypography
+                  variant="button"
+                  fontWeight="regular"
+                  color="text"
+                  style={{ fontSize: 12 }}
+                >
+                  {generateDescNoise(noise)}
+                </MDTypography>
+              </Grid>
+              <Grid item md={3} mr={3} mt={-4}>
+                <MDTypography variant="button" fontWeight="medium" color="text">
+                  Set Nodes in Map
+                </MDTypography>
+                <br />
+                <MDTypography
+                  variant="button"
+                  fontWeight="regular"
+                  color="text"
+                  style={{ fontSize: 12 }}
+                >
+                  Add or remove Quantum Computer nodes in map
+                </MDTypography>
+                <div style={{ position: "relative", marginTop: 30 }}>
+                  <Button appearance="primary" onClick={() => console.log("nodes added")}>
+                    {"Add Node"}
+                  </Button>
+                  <Button
+                    style={{ marginLeft: 8 }}
+                    appearance="primary"
+                    color="red"
+                    onClick={() => console.log("nodes added")}
+                  >
+                    {"Remove Node"}
+                  </Button>
+                </div>
+              </Grid>
+            </Grid>
+          </div>
+        );
       case 2:
         return <div>Processing</div>;
       case 3:
