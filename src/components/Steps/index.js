@@ -1,5 +1,5 @@
 import { Steps, Panel, ButtonGroup, Button } from "rsuite";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "rsuite/dist/rsuite.css";
 import Grid from "@mui/material/Grid";
 import MDTypography from "components/MDTypography";
@@ -8,6 +8,8 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import BlochSphere from "components/BlochSphere";
 import bloch from "assets/images/bloch3.png";
+import mapimg from "assets/images/bgqc.jpg";
+import mapreal from "assets/images/bgqc2.png";
 import MDBox from "components/MDBox";
 import PropTypes from "prop-types";
 
@@ -41,6 +43,16 @@ export default function StepsComponent({ onProtocolChange }) {
   };
 
   const [isOpen, setIsOpen] = useState(false);
+  const [imaginaryMap, setImaginaryMap] = useState(false);
+
+  // useEffect(() => {
+  //   const pane = document.querySelector(".react-flow__pane");
+  //   if (imaginaryMap) {
+  //     pane.style.backgroundImage = 'url("assets/images/bgqc.jpg")';
+  //   } else {
+  //     pane.style.backgroundImage = 'url("assets/images/bgqc2.png")';
+  //   }
+  // }, [imaginaryMap]);
 
   const floatingBloch = () => {
     return (
@@ -168,7 +180,7 @@ export default function StepsComponent({ onProtocolChange }) {
         return (
           <div>
             <Grid container style={{ textAlign: "justify" }} spacing={5}>
-              <Grid item md={6}>
+              <Grid item md={5}>
                 <MDTypography variant="button" fontWeight="medium" color="text">
                   Noise Type
                 </MDTypography>
@@ -226,6 +238,20 @@ export default function StepsComponent({ onProtocolChange }) {
                   </Button>
                 </div>
               </Grid>
+              <Grid item md={3} mr={3} mt={-4.5}>
+                <MDTypography variant="button" fontWeight="medium" color="text">
+                  (Style) Toggle Imaginary Map
+                </MDTypography>
+                <br />
+                <MDBox
+                  component="img"
+                  src={mapimg}
+                  alt="Brand"
+                  width="16rem"
+                  onClick={() => setImaginaryMap(!imaginaryMap)}
+                />
+              </Grid>
+              <br />
             </Grid>
           </div>
         );
