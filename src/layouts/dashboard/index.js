@@ -25,6 +25,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DashboardInfo1 from "examples/Charts/Infographics/DashboardInfo1";
 import DashboardInfo2 from "examples/Charts/Infographics/DashboardInfo2";
+import DashboardInfo3 from "examples/Charts/Infographics/DashboardInfo3";
 import DashboardProjects from "examples/Charts/Infographics/DashboardProjects";
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
@@ -75,13 +76,19 @@ function Dashboard() {
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
-                <ReportsLineChart
+                <DashboardInfo3
+                  color="info"
+                  title="Professor Hyundong Shin"
+                  description=""
+                  date="Campaign 2 days ago"
+                />
+                {/* <ReportsLineChart
                   color="dark"
                   title="Professor Hyundong Shin"
-                  description="He received the IEEE William R. Bennett Prize Paper Award (2012) and the IEEE Guglielmo Marconi Prize Paper Award (2008). He served as a Publicity co-chair for the IEEE PIMRC (2018) and a Technical Program co-chair for the IEEE WCNC (PHY Track 2009), the IEEE Globecom (Communication Theory Symposium 2012, Cognitive Radio and Networks Symposium 2016)"
+                  description=""
                   date="Prof. Hyundong Shin has been elevated to IEEE Fellow"
                   chart={tasks}
-                />
+                /> */}
               </MDBox>
             </Grid>
           </Grid>
@@ -107,7 +114,7 @@ function Dashboard() {
           </Grid>
         </MDBox>
       </MDBox>
-      <MDBox mb={3}>
+      {/* <MDBox mb={3}>
         <DashboardProjects
           color="info"
           title="Research & Projects"
@@ -120,9 +127,6 @@ function Dashboard() {
           <Grid item xs={12} md={6} lg={12}>
             <ProjectsQisk />
           </Grid>
-          {/* <Grid item xs={12} md={6} lg={4}>
-              <OrdersOverview />
-            </Grid> */}
         </Grid>
       </MDBox>
       <MDBox mb={3}>
@@ -130,11 +134,8 @@ function Dashboard() {
           <Grid item xs={12} md={6} lg={12}>
             <ProjectsIBM />
           </Grid>
-          {/* <Grid item xs={12} md={6} lg={4}>
-              <OrdersOverview />
-            </Grid> */}
         </Grid>
-      </MDBox>
+      </MDBox> */}
       <Footer />
     </DashboardLayout>
   );

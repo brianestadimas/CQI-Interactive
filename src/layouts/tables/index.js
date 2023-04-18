@@ -68,7 +68,7 @@ function Tables() {
             </Card>
           </Grid>
           <Grid item xs={12}>
-            <Card>
+            {/* <Card>
               <MDBox
                 mx={2}
                 mt={-3}
@@ -92,7 +92,7 @@ function Tables() {
                   noEndBorder
                 />
               </MDBox>
-            </Card>
+            </Card> */}
           </Grid>
         </Grid>
       </MDBox>

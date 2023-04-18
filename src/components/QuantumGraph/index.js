@@ -29,10 +29,14 @@ import Graph from "./graph";
 
 import Steps from "components/Steps";
 
+import "./index.css";
+
 function QuantumGraph() {
   const [menu, setMenu] = useState(null);
   const ref = useRef(null);
   const [protocol, setProtocol] = useState(1);
+  const [step, setStep] = useState(0);
+  const [noise, setNoise] = useState(1);
 
   useEffect(() => {
     const el = ref.current;
@@ -40,6 +44,14 @@ function QuantumGraph() {
 
   const handleProtocolChange = (eProtocol) => {
     setProtocol(eProtocol);
+  };
+
+  const handleStepChange = (eStep) => {
+    setStep(eStep);
+  };
+
+  const handleNoiseChange = (eStep) => {
+    setNoise(eStep);
   };
 
   const openMenu = ({ currentTarget }) => setMenu(currentTarget);
@@ -81,18 +93,21 @@ function QuantumGraph() {
             >
               sensors
             </Icon>
-            Quantum Communications
+            Counterfactual Quantum Full-Duplex Communications
           </MDTypography>
 
           <MDBox display="flex" alignItems="center" lineHeight={0}>
             <Grid container style={{ textAlign: "justify" }} spacing={5}>
               <Grid item md={12}>
                 <MDTypography variant="button" fontWeight="regular" color="text">
-                  Quantum communication is a way of sending information using quantum mechanics, the
-                  science that studies the behavior of particles at a very small scale. It offers
-                  several benefits over classical communication, which relies on classical physics.
-                  One of the main benefits of quantum communication is that it provides a{" "}
-                  <b>way of sending information that is completely secure and faster</b>.
+                  Counterfactual quantum full-duplex communication is a way of exchanging classical
+                  or quantum information between two remote parties simultaneously without the
+                  transmission of any information-carrying particles through the quantum channel. It
+                  is achieved through the use of counterfactual electron-photon interaction gates.
+                  Due to the unique property of communication without transmitting any physical
+                  particle over the channel, it chan provide inherent security advantages over most
+                  of eavesdropping attacks such as the photon-number splitting attack and the
+                  intercept-and-resend attack.
                 </MDTypography>
               </Grid>
               {/* <Grid item md={6}>
@@ -111,7 +126,11 @@ function QuantumGraph() {
             <Grid container style={{ textAlign: "justify" }} spacing={5}>
               <Grid item md={12}>
                 <div>
-                  <Steps onProtocolChange={handleProtocolChange} />
+                  <Steps
+                    onProtocolChange={handleProtocolChange}
+                    onStepChange={handleStepChange}
+                    onNoiseChange={handleNoiseChange}
+                  />
                   {/* <BlochSphere theta="100" phi="100" /> */}
                 </div>
               </Grid>
@@ -124,11 +143,10 @@ function QuantumGraph() {
             more_vert
           </Icon>
         </MDBox>
-        {renderMenu}
       </MDBox>
       <MDBox>
-        <div style={{ height: "820px" }}>
-          <Graph protocol={protocol} />
+        <div style={{ position: "relative", height: "600px" }}>
+          <Graph protocol={protocol} steps={step} noise={noise} />
         </div>
       </MDBox>
     </Card>

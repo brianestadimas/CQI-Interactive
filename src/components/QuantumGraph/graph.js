@@ -1,258 +1,666 @@
-import { Handle, Position } from "reactflow";
-import { useCallback, useState, useEffect } from "react";
-import ReactFlow, {
-  addEdge,
-  applyEdgeChanges,
-  applyNodeChanges,
-  MiniMap,
-  Controls,
-} from "reactflow";
-import "reactflow/dist/style.css";
-import "./style.css";
-import Grid from "@mui/material/Grid";
-import MDBox from "components/MDBox";
-import MDAvatar from "components/MDAvatar";
-import Icon from "@mui/material/Icon";
+import { useCallback, useState, useEffect, useMemo } from "react";
+import { addEdge, applyEdgeChanges, applyNodeChanges, Handle, Position } from "reactflow";
+import Flow from "components/GraphTsx/index.tsx";
 import qcomputer from "assets/images/quantumcomputer.png";
-import repeater from "assets/images/repeater.jpg";
-import Slider from "./slider";
-
-const rfStyle = {
-  backgroundColor: "#B8CEFF",
-};
+import { TypeAnimation } from "react-type-animation";
+import "reactflow/dist/base.css";
+import MDAvatar from "components/MDAvatar";
+import { Img } from "react-image";
+import fig10 from "assets/images/fig10.png";
+import hadamard from "assets/images/hadamard.png";
+import measurement from "assets/images/measurement.png";
+import MDBox from "components/MDBox";
+import { defineState } from "./helper";
+import Signal from "components/Signal";
 
 const initialNodes = [
   {
-    id: "node-1",
-    type: "textUpdater",
-    position: { x: -250, y: -200 },
-    data: { name: "PC-Alice", type: "pc", value: 1.0, idx: 1 },
+    id: "1",
+    position: { x: -50, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Alice",
+      subline: "Quantum PC",
+    },
+    type: "turbo",
   },
   {
-    id: "node-2",
-    type: "textUpdater",
-    position: { x: -80, y: -50 },
-    data: { name: "Repeater", type: "rep", value: 1.0, idx: 2 },
-  },
-  {
-    id: "node-3",
-    type: "textUpdater",
-    position: { x: 0, y: 70 },
-    data: { name: "PC-Bob", type: "pc", value: 1.0, idx: 3 },
-  },
-  {
-    id: "node-4",
-    type: "textUpdater",
-    position: { x: 100, y: 200 },
-    data: { name: "PC-Charlie", type: "pc", value: 1.0, idx: 4 },
+    id: "2",
+    position: { x: 450, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Bob",
+      subline: "Quantum PC",
+    },
+    type: "turbo",
   },
 ];
 
-const initialNodes2 = [
+const node1 = [
   {
-    id: "node-1",
-    type: "textUpdater",
-    position: { x: 0, y: 0 },
-    data: { name: "Server", type: "rep", value: 1.0, idx: 1 },
+    id: "1",
+    position: { x: -50, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Alice",
+      subline: "Quantum PC",
+    },
+    type: "turbo",
   },
   {
-    id: "node-2",
-    type: "textUpdater",
-    position: { x: -250, y: -200 },
-    data: { name: "PC-Alice", type: "pc", value: 1.0, idx: 2 },
+    id: "2",
+    position: { x: 450, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Bob",
+      subline: "Quantum PC",
+    },
+    type: "turbo",
   },
   {
-    id: "node-3",
-    type: "textUpdater",
-    position: { x: 250, y: -200 },
-    data: { name: "PC-Bob", type: "pc", value: 1.0, idx: 3 },
-  },
-  {
-    id: "node-4",
-    type: "textUpdater",
-    position: { x: -350, y: 100 },
-    data: { name: "PC-Charlie", type: "pc", value: 1.0, idx: 4 },
-  },
-  {
-    id: "node-5",
-    type: "textUpdater",
-    position: { x: 200, y: 200 },
-    data: { name: "PC-Delta", type: "pc", value: 1.0, idx: 5 },
+    id: "3",
+    position: { x: -70, y: 150 },
+    data: {
+      sequence: ["Distribute entanglement between Alice and Bob", 4000, ""],
+    },
+    type: "text",
   },
 ];
 
-const handleStyle = { left: 10 };
-const textUpdater = (data, isConnectable) => {
-  const startPoint = data["data"]["idx"] * 4;
-  return (
-    <div className="text-updater-node">
-      <Handle
-        type="target"
-        position={Position.Top}
-        id={"source" + (startPoint - 3).toString()}
-        style={handleStyle}
-        isConnectable={isConnectable}
-      />
-      <Handle
-        type="target"
-        position={Position.Top}
-        id={"source" + (startPoint - 2).toString()}
-        isConnectable={isConnectable}
-      />
-      <div>
-        <Grid container style={{ width: 120 }}>
-          <Grid item md={4}>
-            {data["data"]["type"] === "pc" ? (
-              <>
-                <div style={{ marginLeft: -3, marginTop: -10 }}>
-                  <MDAvatar src={qcomputer} name="qcomputer" size="md" />
-                </div>
+const defaultState = (
+  <span>
+    Φ<sup>+</sup>
+  </span>
+);
+const node2 = (seq, noise, state1 = defaultState, state2 = defaultState) => [
+  {
+    id: "1",
+    position: { x: -50, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Alice",
+      subline: "Quantum PC",
+      state: state1,
+    },
+    type: "turbo",
+  },
+  {
+    id: "2",
+    position: { x: 450, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Bob",
+      subline: "Quantum PC",
+      state: state2,
+    },
+    type: "turbo",
+  },
+  {
+    id: "3",
+    position: { x: -70, y: 150 },
+    data: {
+      sequence: [seq],
+    },
+    type: "text",
+  },
+];
 
-                <div style={{ fontSize: 6, marginTop: -10, textAlign: "center" }}>
-                  <b>{data["data"]["name"]}</b>
-                </div>
-              </>
-            ) : (
-              <>
-                <div style={{ marginLeft: -1, marginTop: -6 }}>
-                  <MDAvatar src={repeater} name="repeater" size="sm" />
-                </div>
-                <div style={{ fontSize: 6, marginTop: 1, textAlign: "center" }}>
-                  <b>{data["data"]["name"] ? data["data"]["name"] : "Repeater"}</b>
-                </div>
-              </>
-            )}
-          </Grid>
-          <Grid item md={6}>
-            <MDBox mt={-0.5} ml={0.5}>
-              <div style={{ fontSize: 8, marginTop: 3, marginBottom: 3 }}>
-                <span style={{ fontSize: 8 }}>
-                  <Icon fontSize="inherit" color="inherit">
-                    settings
-                  </Icon>
-                </span>
-                <span>
-                  &nbsp;<b>Fidelity :</b>
-                </span>
-              </div>
-              <Slider />
-              <Grid container style={{ width: 90 }} mt={-5}>
-                <Grid item md={2} mr={1.9}>
-                  <div style={{ fontSize: 6 }}>0.00</div>
-                </Grid>
-                <Grid item md={2} mr={2}>
-                  <div style={{ fontSize: 6 }}>0.50</div>
-                </Grid>
-                <div style={{ fontSize: 6 }}>1.00</div>
-              </Grid>
-            </MDBox>
-          </Grid>
-        </Grid>
-      </div>
-      <Handle
-        type="source"
-        position={Position.Bottom}
-        id={"source" + (startPoint - 1).toString()}
-        style={handleStyle}
-        isConnectable={isConnectable}
-      />
-      <Handle
-        type="source"
-        position={Position.Bottom}
-        id={"source" + startPoint.toString()}
-        isConnectable={isConnectable}
-      />
-    </div>
-  );
-};
+const node3 = (noise) => [
+  {
+    id: "11",
+    position: { x: -50, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Alice",
+      subline: "Quantum PC",
+      state: (
+        <span>
+          Φ<sup>+</sup>
+        </span>
+      ),
+    },
+    type: "turbo",
+  },
+  {
+    id: "2",
+    position: { x: 450, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Bob",
+      subline: "Quantum PC",
+      state: (
+        <span>
+          Φ<sup>+</sup>
+        </span>
+      ),
+    },
+    type: "turbo",
+  },
+  {
+    id: "3",
+    position: { x: -70, y: 150 },
+    data: {
+      sequence: ["Applying encode for Alice"],
+    },
+    type: "text",
+  },
+  {
+    id: "4",
+    position: { x: 130, y: -55 },
+    data: {
+      component: (
+        <div style={{ width: "330px", height: "50px" }}>
+          <Signal />
+        </div>
+      ),
+    },
+    type: "wave",
+  },
+];
 
-const nodeTypes = { textUpdater: textUpdater };
+const node4 = (noise) => [
+  {
+    id: "1",
+    position: { x: -50, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Alice",
+      subline: "Quantum PC",
+      state: defineState(2, noise, "A"),
+    },
+    type: "turbo",
+  },
+  {
+    id: "12",
+    position: { x: 450, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Bob",
+      subline: "Quantum PC",
+      state: (
+        <span>
+          Φ<sup>+</sup>
+        </span>
+      ),
+    },
+    type: "turbo",
+  },
+  {
+    id: "3",
+    position: { x: -70, y: 150 },
+    data: {
+      sequence: ["Alice is Encoded, applying encoding for Bob"],
+    },
+    type: "text",
+  },
+  {
+    id: "4",
+    position: { x: 130, y: 32 },
+    data: {
+      component: (
+        <div style={{ width: "310px", height: "50px" }}>
+          <Signal />
+        </div>
+      ),
+    },
+    type: "wave",
+  },
+];
 
-function Graph({ protocol }) {
-  const defaultViewport = { x: 0, y: 0, zoom: 0.0001 };
+const node6 = (noise) => [
+  {
+    id: "11",
+    position: { x: -50, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Alice",
+      subline: "Quantum PC",
+      state: defineState(2, noise, "A"),
+    },
+    type: "turbo",
+  },
+  {
+    id: "12",
+    position: { x: 450, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Bob",
+      subline: "Quantum PC",
+      state: defineState(2, noise, "B"),
+    },
+    type: "turbo",
+  },
+  {
+    id: "3",
+    position: { x: -70, y: 150 },
+    data: {
+      sequence: [
+        "Applying DCNOT gate to both of parties",
+        2000,
+        "DCNOT is a distributed control NOT gate. It counterfactual applies consecutive nonlocal CNOT operations between Alice and Bob.",
+      ],
+    },
+    type: "text",
+  },
+];
+
+const node7 = (noise) => [
+  {
+    id: "1",
+    position: { x: -50, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Alice",
+      subline: "Quantum PC",
+      state: defineState(2, noise, "A"),
+    },
+    type: "turbo",
+  },
+  {
+    id: "2",
+    position: { x: 450, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Bob",
+      subline: "Quantum PC",
+      state: defineState(2, noise, "B"),
+    },
+    type: "turbo",
+  },
+  {
+    id: "4",
+    position: { x: 320, y: 18 },
+    data: {
+      icon: qcomputer,
+      title: "D-CNOT",
+      subline: "Gate",
+      gate: "true",
+      dcnot: true,
+    },
+    type: "gate",
+  },
+  {
+    id: "3",
+    position: { x: -70, y: 100 },
+    data: {
+      icon: fig10,
+      width: "20rem",
+    },
+    type: "image",
+  },
+];
+
+const node9 = (noise) => [
+  {
+    id: "1",
+    position: { x: -50, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Alice",
+      subline: "Quantum PC",
+      state: defineState(3, noise, "A"),
+    },
+    type: "turbo",
+  },
+  {
+    id: "2",
+    position: { x: 340, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Bob",
+      subline: "Quantum PC",
+      state: defineState(3, noise, "B"),
+    },
+    type: "turbo",
+  },
+  {
+    id: "3",
+    position: { x: 150, y: 18 },
+    data: {
+      icon: hadamard,
+      width: "3rem",
+    },
+    type: "image",
+  },
+  {
+    id: "4",
+    position: { x: 240, y: 18 },
+    data: {
+      icon: measurement,
+      width: "3rem",
+    },
+    type: "image",
+  },
+  {
+    id: "5",
+    position: { x: 580, y: 18 },
+    data: {
+      icon: measurement,
+      width: "3rem",
+    },
+    type: "image",
+  },
+  {
+    id: "6",
+    position: { x: -70, y: 150 },
+    data: {
+      sequence: [
+        "DCNOT Applied to both parties",
+        1000,
+        "Applying the Z gate to Alice",
+        1000,
+        "Applying the Hadamard gate to Bob",
+        2000,
+        "Measure both parties",
+      ],
+    },
+    type: "text",
+  },
+];
+
+const node10 = (noise) => [
+  {
+    id: "1",
+    position: { x: -50, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Alice",
+      subline: "Quantum PC",
+      state: defineState(4, noise, "A"),
+    },
+    type: "turbo",
+  },
+  {
+    id: "2",
+    position: { x: 340, y: 0 },
+    data: {
+      icon: qcomputer,
+      title: "Bob",
+      subline: "Quantum PC",
+      state: defineState(4, noise, "B"),
+    },
+    type: "turbo",
+  },
+  {
+    id: "3",
+    position: { x: 150, y: 18 },
+    data: {
+      icon: hadamard,
+      width: "3rem",
+    },
+    type: "image",
+  },
+  {
+    id: "4",
+    position: { x: 240, y: 18 },
+    data: {
+      icon: measurement,
+      width: "3rem",
+    },
+    type: "image",
+  },
+  {
+    id: "5",
+    position: { x: 580, y: 18 },
+    data: {
+      icon: measurement,
+      width: "3rem",
+    },
+    type: "image",
+  },
+  {
+    id: "6",
+    position: { x: -70, y: 150 },
+    data: {
+      sequence: ["Measurement is finished between two parties"],
+    },
+    type: "text",
+  },
+];
+
+const initialEdges = [
+  {
+    id: "e1-2",
+    // source: "1",
+    // target: "2",
+    // animated: true,
+    // style: { stroke: "white" },
+  },
+];
+
+function Graph({ protocol, steps, noise }) {
   const [nodes, setNodes] = useState(initialNodes);
-  const [edges, setEdges] = useState([]);
+  const [edges, setEdges] = useState(initialEdges);
 
-  useEffect(() => {
-    if (protocol === 1) {
-      setNodes(initialNodes);
-    } else {
-      setNodes(initialNodes2);
-    }
-  }, [protocol]);
-
-  const onNodesChange = useCallback(
-    (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
-    [setNodes]
-  );
-  const onEdgesChange = useCallback(
-    (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-    [setEdges]
-  );
-  const onConnect = useCallback(
-    (connection) => setEdges((eds) => addEdge(connection, eds)),
-    [setEdges]
-  );
-
-  useEffect(() => {
-    setEdges(generateNodes());
-  }, [nodes]);
-
-  const generateNodes = () => {
-    const nodeLength = nodes.length;
-    const res = [];
-    if (protocol > 1) {
-      return res;
-    }
-    for (let i = 0, j = 1; i <= nodeLength * 4; i += 4, j++) {
-      const source1 = i + 3;
-      const target1 = i + 5;
-      const source2 = i + 4;
-      const target2 = i + 6;
-      if (target1 >= nodeLength * 4) break;
-      res.push({
-        id: "edge-" + i,
-        source: "node-" + j,
-        target: "node-" + (j + 1),
-        type: "straight",
-        label: " classic",
-        labelStyle: { fontSize: 8 },
-        labelBgStyle: { fill: "#FFCC00", color: "#fff", fillOpacity: 0.7 },
-        labelBgPadding: [2, 4],
-        sourceHandle: "source" + source1.toString(),
-      });
-      res.push({
-        id: "edge-" + (i + 1),
-        source: "node-" + j,
-        target: "node-" + (j + 1),
-        animated: true,
-        sourceHandle: "source" + source2.toString(),
-        targetHandle: "source" + target2.toString(),
-        label: " quantum",
-        labelStyle: { fontSize: 9 },
-        labelBgStyle: { fill: "lightblue", color: "#fff", fillOpacity: 0.7 },
-        style: { stroke: "white" },
-        labelBgPadding: [2, 4],
-      });
-    }
-    return res;
+  const textUpdater = (data) => {
+    return (
+      <div className="text-updater-node">
+        <div className="text-updater-node__label">
+          <TypeAnimation
+            sequence={data?.data?.sequence}
+            wrapper="span"
+            cursor={true}
+            style={{ fontSize: "1em", display: "inline-block" }}
+          />
+        </div>
+      </div>
+    );
   };
 
+  const gateUpdater = (data) => {
+    return (
+      <div className="gate-node">
+        {data?.data?.dcnot ? (
+          <span style={{ color: "blue", height: 5 }}>DCNOT</span>
+        ) : (
+          <MDAvatar src={data?.data?.icon} name="repeater" size="md" />
+        )}
+        <Handle type="target" position={Position.Left} />
+        <Handle type="source" position={Position.Right} />
+      </div>
+    );
+  };
+
+  const imageUpdater = (data) => {
+    return (
+      <div className="image-node">
+        <MDBox component="img" src={data?.data?.icon} alt="Brand" width={data?.data?.width} />
+        <Handle type="target" position={Position.Left} />
+        <Handle type="source" position={Position.Right} />
+      </div>
+    );
+  };
+
+  const waveUpdater = (data) => {
+    return (
+      <div className="image-node">
+        {data?.data?.component}
+        <Handle type="target" position={Position.Left} />
+        <Handle type="source" position={Position.Right} />
+      </div>
+    );
+  };
+
+  // useEffect(() => {
+  //   if (protocol === 3) {
+  //     setNodes(initialNodes);
+  //   } else {
+  //     setNodes(initialNodes2);
+  //   }
+  // }, [protocol]);
+
+  useEffect(() => {
+    if (steps === 0) {
+      setNodes(initialNodes);
+      setEdges(initialEdges);
+    }
+    if (steps === 1) {
+      setNodes([...node1]);
+    }
+    if (steps === 2) {
+      setEdges([
+        {
+          id: "e1-2",
+          source: "1",
+          target: "2",
+          animated: true,
+        },
+      ]);
+      setNodes(node2("Entanglement of Alice and Bob is Completed", noise).map((node) => node));
+      setTimeout(() => {
+        setEdges((prevEdges) => {
+          const updatedEdges = prevEdges.map((edge) => {
+            if (edge.id === "e1-2") {
+              return { ...edge, animated: false };
+            }
+            return edge;
+          });
+          return updatedEdges;
+        });
+      }, 8000);
+    }
+    if (steps === 3) {
+      setNodes(node3(noise).map((node) => node));
+      setTimeout(() => {
+        setEdges([
+          {
+            id: "e1-2",
+            source: "11",
+            target: "2",
+            animated: false,
+          },
+        ]);
+      }, 50);
+    }
+    if (steps === 4) {
+      setNodes(node4(noise).map((node) => node));
+      setTimeout(() => {
+        setEdges([
+          {
+            id: "e1-2",
+            source: "1",
+            target: "12",
+            animated: false,
+          },
+        ]);
+      }, 50);
+    }
+    if (steps === 5) {
+      setNodes(
+        node2(
+          "Both parties are encoded and entangled",
+          noise,
+          defineState(2, noise, "A"),
+          defineState(2, noise, "B")
+        ).map((node) => node)
+      );
+
+      setTimeout(() => {
+        setEdges([
+          {
+            id: "e1-2",
+            source: "1",
+            target: "2",
+            animated: false,
+          },
+        ]);
+      }, 50);
+    }
+    if (steps === 6) {
+      setNodes(node6(noise).map((node) => node));
+      setTimeout(() => {
+        setEdges([
+          {
+            id: "e1-2",
+            source: "11",
+            target: "12",
+            animated: false,
+          },
+        ]);
+      }, 50);
+    }
+    if (steps === 7) {
+      setNodes(node7(noise).map((node) => node));
+      setTimeout(() => {
+        setEdges([
+          {
+            id: "e1-2",
+            source: "1",
+            target: "2",
+            animated: false,
+          },
+          {
+            id: "e3-4",
+            source: "3",
+            target: "4",
+            animated: false,
+          },
+        ]);
+      }, 50);
+    }
+    if (steps === 8) {
+      setNodes(
+        node2(
+          "DCNOT Applied to both parties and disentanglement occurs with quantum-states changes",
+          noise,
+          defineState(3, noise, "A"),
+          defineState(3, noise, "B")
+        ).map((node) => node)
+      );
+      setTimeout(() => {
+        setEdges([]);
+      }, 50);
+    }
+    if (steps === 9) {
+      setNodes(node9(noise).map((node) => node));
+      setTimeout(() => {
+        setEdges([
+          {
+            id: "e1-2",
+            source: "1",
+            target: "4",
+            animated: true,
+          },
+          {
+            id: "e2-3",
+            source: "2",
+            target: "5",
+            animated: true,
+          },
+        ]);
+      }, 50);
+    }
+    if (steps === 10) {
+      setNodes(node10(noise).map((node) => node));
+      setTimeout(() => {
+        setEdges([
+          {
+            id: "e1-2",
+            source: "1",
+            target: "4",
+            animated: false,
+          },
+          {
+            id: "e2-3",
+            source: "2",
+            target: "5",
+            animated: false,
+          },
+        ]);
+      }, 50);
+    }
+  }, [steps, noise]);
+
   return (
-    <ReactFlow
-      nodes={nodes}
-      edges={edges}
-      onNodesChange={onNodesChange}
-      onEdgesChange={onEdgesChange}
-      onConnect={onConnect}
-      nodeTypes={nodeTypes}
-      fitView
-      style={rfStyle}
-      defaultViewport={defaultViewport}
-    >
-      <MiniMap />
-      <Controls />
-    </ReactFlow>
+    <Flow
+      getNodes={nodes}
+      getEdges={edges}
+      gateUpdater={gateUpdater}
+      textUpdater={textUpdater}
+      imageUpdater={imageUpdater}
+      waveUpdater={waveUpdater}
+      setNodes={setNodes}
+    />
   );
 }
 

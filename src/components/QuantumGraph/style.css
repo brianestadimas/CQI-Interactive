@@ -1,19 +1,18 @@
 .text-updater-node {
-  height: 50px;
+  height: 20px;
   border: 1px solid #eee;
-  padding: 5px;
   border-radius: 5px;
   background: white;
 }
 
-.text-updater-node label {
+.text-updater-node__label {
   display: block;
   color: #777;
-  font-size: 12px;
+  font-size: 10px;
   border: 0px;
 }
 .react-flow__pane {
-  background: url("assets/images/bgqc2.png");
+  background: url("assets/images/bgqc4.png");
 }
 
 /* For slider */

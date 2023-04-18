@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState, useEffect, useMemo } from "react";
 
 // react-router components
@@ -68,19 +53,6 @@ export default function App() {
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
-
-  // useEffect(() => {
-  //   const setZoom = () => {
-  //     const isLaptop = window.matchMedia("(max-width: 1704px)").matches;
-  //     const zoomLevel = isLaptop ? "80%" : "100%";
-  //     document.body.style.zoom = zoomLevel;
-  //   };
-  //   setZoom();
-  //   window.addEventListener("resize", setZoom);
-  //   return () => {
-  //     window.removeEventListener("resize", setZoom);
-  //   };
-  // }, []);
 
   // Cache for the rtl
   useMemo(() => {

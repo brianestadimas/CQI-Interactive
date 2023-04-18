@@ -35,12 +35,12 @@ import Grid from "@mui/material/Grid";
 function DashboardInfo2({ color, title, description, date }) {
   return (
     <Card sx={{ height: "100%" }}>
-      <MDBox margin="-24px -10px -10px 30px">
+      <MDBox margin="-24px -10px -10px 10px">
         {useMemo(
           () => (
             <Img
-              src="http://cqilab.khu.ac.kr/wp-content/uploads/2023/01/web-1024x747.jpg-1024x754.jpg"
-              width="84%"
+              src="http://cqilab.khu.ac.kr/wp-content/uploads/2023/01/Hyundong-Shin-1.jpg"
+              width="88%"
             />
           ),
           [color]
@@ -51,28 +51,12 @@ function DashboardInfo2({ color, title, description, date }) {
           </MDTypography>
           <MDTypography component="div" variant="button" color="text" fontWeight="light">
             <Grid container spacing={8}>
-              <Grid item md={1}>
-                <MDBox
-                  mt={1}
-                  variant="gradient"
-                  bgColor="info"
-                  color="light"
-                  coloredShadow="dark"
-                  borderRadius="xl"
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  width="3rem"
-                  height="3rem"
-                >
-                  <Icon fontSize="medium" color="inherit">
-                    science
-                  </Icon>
-                </MDBox>
-              </Grid>
-              <Grid item md={10} mt={1}>
-                We worked over <b>116</b> paper, <b>211</b> conferences Research with more than{" "}
-                <b>52</b> Patents in field of Quantum Computing and Quantum Information.
+              <Grid item md={12} mt={1}>
+                He received the IEEE William R. Bennett Prize Paper Award (2012) and the IEEE
+                Guglielmo Marconi Prize Paper Award (2008). He served as a Publicity co-chair for
+                the IEEE PIMRC (2018) and a Technical Program co-chair for the IEEE WCNC (PHY Track
+                2009), the IEEE Globecom (Communication Theory Symposium 2012, Cognitive Radio and
+                Networks Symposium 2016)
               </Grid>
             </Grid>
             <Grid container spacing={8}>

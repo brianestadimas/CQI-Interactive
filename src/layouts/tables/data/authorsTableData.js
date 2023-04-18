@@ -59,8 +59,14 @@ export default function data() {
 
     rows: [
       {
-        author: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
-        function: <Job title="Manager" description="Organization" />,
+        author: (
+          <Author
+            image="http://cqilab.khu.ac.kr/wp-content/uploads/2023/01/Hyundong-Shin-1.jpg"
+            name="Professor Hyundong Shin"
+            email="hshin@khu.ac.kr"
+          />
+        ),
+        function: <Job title="Professor" description="CQILAB Kyung Hee University" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
@@ -68,37 +74,28 @@ export default function data() {
         ),
         employed: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            23/04/18
+            Professor
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Edit
-          </MDTypography>
+          <MDTypography
+            component="a"
+            href="#"
+            variant="caption"
+            color="text"
+            fontWeight="medium"
+          ></MDTypography>
         ),
       },
       {
-        author: <Author image={team3} name="Alexa Liras" email="alexa@creative-tim.com" />,
-        function: <Job title="Programator" description="Developer" />,
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
-          </MDBox>
+        author: (
+          <Author
+            image="http://cqilab.khu.ac.kr/wp-content/uploads/2019/10/PhD_Student_UmanKhalid.jpg.JPEG.jpg"
+            name="Uman Khalid"
+            email="umankhalid@khu.ac.kr"
+          />
         ),
-        employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            11/01/19
-          </MDTypography>
-        ),
-        action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Edit
-          </MDTypography>
-        ),
-      },
-      {
-        author: <Author image={team4} name="Laurent Perrier" email="laurent@creative-tim.com" />,
-        function: <Job title="Executive" description="Projects" />,
+        function: <Job title="Postdoctor" description="CQILAB Kyung Hee University" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
@@ -106,18 +103,28 @@ export default function data() {
         ),
         employed: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            19/09/17
+            Post Doc
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Edit
-          </MDTypography>
+          <MDTypography
+            component="a"
+            href="#"
+            variant="caption"
+            color="text"
+            fontWeight="medium"
+          ></MDTypography>
         ),
       },
       {
-        author: <Author image={team3} name="Michael Levi" email="michael@creative-tim.com" />,
-        function: <Job title="Programator" description="Developer" />,
+        author: (
+          <Author
+            image="http://cqilab.khu.ac.kr/wp-content/uploads/2023/02/1676971282159.png"
+            name="Awais Khan"
+            email="khanawais62@khu.ac.kr"
+          />
+        ),
+        function: <Job title="Postdoctor" description="CQILAB Kyung Hee University" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
@@ -125,51 +132,75 @@ export default function data() {
         ),
         employed: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            24/12/08
+            Post Doc
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Edit
-          </MDTypography>
+          <MDTypography
+            component="a"
+            href="#"
+            variant="caption"
+            color="text"
+            fontWeight="medium"
+          ></MDTypography>
         ),
       },
       {
-        author: <Author image={team3} name="Richard Gran" email="richard@creative-tim.com" />,
-        function: <Job title="Manager" description="Executive" />,
+        author: (
+          <Author
+            image="http://cqilab.khu.ac.kr/wp-content/uploads/2023/01/Picture-2021-11-03.png"
+            name="Fakhar Zaman"
+            email="fakhar_102@khu.ac.kr"
+          />
+        ),
+        function: <Job title="PhD Fellow" description="CQILAB Kyung Hee University" />,
         status: (
           <MDBox ml={-1}>
-            <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
+            <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
           </MDBox>
         ),
         employed: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            04/10/21
+            PhD Fellow
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Edit
-          </MDTypography>
+          <MDTypography
+            component="a"
+            href="#"
+            variant="caption"
+            color="text"
+            fontWeight="medium"
+          ></MDTypography>
         ),
       },
       {
-        author: <Author image={team4} name="Miriam Eric" email="miriam@creative-tim.com" />,
-        function: <Job title="Programator" description="Developer" />,
+        author: (
+          <Author
+            image="http://cqilab.khu.ac.kr/wp-content/uploads/2019/10/MS_Student_SawNangPaing.JPG.jpg"
+            name="Saw Nang Paing"
+            email="sawnangpaing@khu.ac.kr"
+          />
+        ),
+        function: <Job title="PhD Student" description="CQILAB Kyung Hee University" />,
         status: (
           <MDBox ml={-1}>
-            <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
+            <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
           </MDBox>
         ),
         employed: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            14/09/20
+            PhD Student
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Edit
-          </MDTypography>
+          <MDTypography
+            component="a"
+            href="#"
+            variant="caption"
+            color="text"
+            fontWeight="medium"
+          ></MDTypography>
         ),
       },
     ],

@@ -39,7 +39,7 @@ function DashboardInfo1({ color, title, description, date }) {
         {useMemo(
           () => (
             <Iframe
-              url="https://www.youtube.com/embed/bEbWEEWYBpE"
+              url="https://www.youtube.com/embed/y_m9iLZIZWg"
               width="100%"
               height="200"
               id="framenn"

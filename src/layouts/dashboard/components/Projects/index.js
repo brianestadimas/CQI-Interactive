@@ -81,14 +81,14 @@ function Projects() {
             >
               monitor
             </Icon>
-            Quantum Circuit for Neural Network
+            Quantum Machine Intelligence (QNN)
           </MDTypography>
           <MDBox display="flex" alignItems="center" lineHeight={0}>
             <MDTypography variant="button" fontWeight="regular" color="text">
-              Most Quantum neural networks are developed as feed-forward networks. Similar to their
-              classical counterparts, this structure intakes input from one layer of qubits, and
-              passes that input onto another layer of qubits. This layer of qubits evaluates this
-              information and passes on the output to the next layer.
+              Quantum Approximate Optimization Algorithm, is a hybrid quantum-classical algorithm
+              used to solve optimization problems. It involves preparing a quantum state, applying a
+              sequence of quantum gates controlled by classical parameters, and measuring the final
+              state to obtain an approximate solution.
             </MDTypography>
           </MDBox>
         </MDBox>

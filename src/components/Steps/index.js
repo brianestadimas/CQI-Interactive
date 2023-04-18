@@ -12,10 +12,13 @@ import mapimg from "assets/images/bgqc.jpg";
 import mapreal from "assets/images/bgqc2.png";
 import MDBox from "components/MDBox";
 import PropTypes from "prop-types";
+import Icon from "@mui/material/Icon";
+import truthtable from "assets/images/truth-table.png";
 
-export default function StepsComponent({ onProtocolChange }) {
+export default function StepsComponent({ onProtocolChange, onStepChange, onNoiseChange }) {
   const [step, setStep] = useState(0);
   const [protocol, setProtocol] = useState(1);
+  const [stepProcess, setStepProcess] = useState(0);
   const [noise, setNoise] = useState(1);
   const onChange = (nextStep) => {
     setStep(nextStep < 0 ? 0 : nextStep > 3 ? 3 : nextStep);
@@ -38,8 +41,22 @@ export default function StepsComponent({ onProtocolChange }) {
     onProtocolChange(event.target.value);
   };
 
+  const handleNextSteps = () => {
+    if (stepProcess >= 10) {
+      setStep(3);
+    }
+    setStepProcess(stepProcess + 1);
+    onStepChange(stepProcess + 1);
+  };
+
+  const handleResetSteps = () => {
+    setStepProcess(0);
+    onStepChange(0);
+  };
+
   const handleChangeNoise = (event) => {
     setNoise(event.target.value);
+    onNoiseChange(event.target.value);
   };
 
   const [isOpen, setIsOpen] = useState(false);
@@ -85,18 +102,19 @@ export default function StepsComponent({ onProtocolChange }) {
     //Switch
     switch (protocol) {
       case 1:
-        return "Quantum state teleportation is a form of quantum communication that allows the transfer of a quantum state from one location to another. The basic process involves three parties: the sender, the receiver, and an entangled pair of qubits.";
+        return "A bit exchange protocol is proposed by developing the distributed controlled NOT (D-CNOT) operation. The protocol enables each party to exchange a one-bit classical information in each direction simultaneously using a single preshared Bell pair of qubits by means of counterfactual disetanglement.";
       case 2:
-        return "Quantum Anonymous Private Information Retrieval (QAPIR) is a quantum cryptographic protocol that enables a user to retrieve information from a database anonymously and privately, without revealing to the database which information was requested or who requested it.";
+        return "A quantum state exchange protocol is proposed by generalizing the idea of D-CNOT operation. The protocol enables remote parties to exchange an arbitrary unknown one-qubit quantum information simultaneously without using presahred entanglement by means of counterfactual entanglement and disentanglement";
       case 3:
-        return "Quantum Anonymous Collision Detection (QACD) is a quantum cryptographic protocol that allows two parties to check if they have a matching item in their respective private sets, without revealing any information about their sets to each other.";
-      default:
         return "Quantum state teleportation is a form of quantum communication that allows the transfer of a quantum state from one location to another. The basic process involves three parties: the sender, the receiver, and an entangled pair of qubits.";
+      default:
+        return "A bit exchange protocol is proposed by developing the distributed controlled NOT (D-CNOT) operation. The protocol enables each party to exchange a one-bit classical information in each direction simultaneously using a single preshared Bell pair of qubits by means of counterfactual disetanglement.";
     }
   };
 
   const generateDescNoise = (protocol) => {
     //Switch
+    return "Encoding is based on quantum gate, pauli operations";
     switch (protocol) {
       case 1:
         return "Quantum state teleportation will go without noises and forming perfect fidelity.";
@@ -132,11 +150,13 @@ export default function StepsComponent({ onProtocolChange }) {
                     onChange={handleChange}
                     // label="Age"
                   >
-                    <MenuItem value={1}>Quantum State Teleportation</MenuItem>
-                    <MenuItem value={2}>
+                    <MenuItem value={1}>Quantum Duplex Coding</MenuItem>
+                    {/* <MenuItem value={2}>Quantum Telexchanging</MenuItem> */}
+                    <MenuItem value={3}>Quantum State Teleportation</MenuItem>
+                    {/* <MenuItem value={2}>
                       Quantum Anonymous Private Information Retrieval (QAPIR)
                     </MenuItem>
-                    <MenuItem value={3}>Quantum Anonymous Collision Detection</MenuItem>
+                    <MenuItem value={3}>Quantum Anonymous Collision Detection</MenuItem> */}
                   </Select>
                 </FormControl>
                 <MDTypography
@@ -182,7 +202,7 @@ export default function StepsComponent({ onProtocolChange }) {
             <Grid container style={{ textAlign: "justify" }} spacing={5}>
               <Grid item md={5}>
                 <MDTypography variant="button" fontWeight="medium" color="text">
-                  Noise Type
+                  Encoding Type
                 </MDTypography>
                 {/* <SelectPicker data={data} block /> */}
                 <br />
@@ -197,9 +217,10 @@ export default function StepsComponent({ onProtocolChange }) {
                     onChange={handleChangeNoise}
                     // label="Age"
                   >
-                    <MenuItem value={1}>No Noise</MenuItem>
-                    <MenuItem value={2}>Environmental Noise</MenuItem>
-                    <MenuItem value={3}>Measurement Noise</MenuItem>
+                    <MenuItem value={1}>I Gate (Alice) & I Gate (Bob)</MenuItem>
+                    <MenuItem value={2}>I Gate (Alice) & X Gate (Bob)</MenuItem>
+                    <MenuItem value={3}>Z Gate (Alice) & I Gate (Bob)</MenuItem>
+                    <MenuItem value={4}>Z Gate (Alice) & X Gate (Bob)</MenuItem>
                   </Select>
                 </FormControl>
                 <MDTypography
@@ -211,9 +232,9 @@ export default function StepsComponent({ onProtocolChange }) {
                   {generateDescNoise(noise)}
                 </MDTypography>
               </Grid>
-              <Grid item md={3} mr={3} mt={-4}>
+              <Grid item md={6} mr={3} mt={-4}>
                 <MDTypography variant="button" fontWeight="medium" color="text">
-                  Set Nodes in Map
+                  What is encoding in counterfactual quantum communication?
                 </MDTypography>
                 <br />
                 <MDTypography
@@ -222,9 +243,47 @@ export default function StepsComponent({ onProtocolChange }) {
                   color="text"
                   style={{ fontSize: 12 }}
                 >
-                  Add or remove Quantum Computer nodes in map
+                  <Icon
+                    sx={{
+                      fontWeight: "bold",
+                      color: ({ palette: { info } }) => info.main,
+                      mt: 0.5,
+                      mr: 1,
+                    }}
+                  >
+                    arrow_right_alt
+                  </Icon>
+                  In counterfactual full duplex quantum communication, encoding refers to the
+                  process of preparing quantum states that encode the information to be transmitted.
+                  <br />{" "}
+                  <Icon
+                    sx={{
+                      fontWeight: "bold",
+                      color: ({ palette: { info } }) => info.main,
+                      mt: 0.5,
+                      mr: 1,
+                    }}
+                  >
+                    arrow_right_alt
+                  </Icon>
+                  The encoding is done in such a way that the information can be retrieved by
+                  measuring the quantum states at the receiving end.
+                  <br />{" "}
+                  <Icon
+                    sx={{
+                      fontWeight: "bold",
+                      color: ({ palette: { info } }) => info.main,
+                      mt: 0.5,
+                      mr: 1,
+                    }}
+                  >
+                    arrow_right_alt
+                  </Icon>
+                  To ensure counterfactuality, the encoding must be done in a way that allows the
+                  receiver to obtain the encoded information without actually transmitting through
+                  the quantum channel.
                 </MDTypography>
-                <div style={{ position: "relative", marginTop: 30 }}>
+                {/* <div style={{ position: "relative", marginTop: 30 }}>
                   <Button appearance="primary" onClick={() => console.log("nodes added")}>
                     {"Add Node"}
                   </Button>
@@ -236,9 +295,9 @@ export default function StepsComponent({ onProtocolChange }) {
                   >
                     {"Remove Node"}
                   </Button>
-                </div>
+                </div> */}
               </Grid>
-              <Grid item md={3} mr={3} mt={-4.5}>
+              {/* <Grid item md={3} mr={3} mt={-4.5}>
                 <MDTypography variant="button" fontWeight="medium" color="text">
                   (Style) Toggle Imaginary Map
                 </MDTypography>
@@ -250,17 +309,93 @@ export default function StepsComponent({ onProtocolChange }) {
                   width="16rem"
                   onClick={() => setImaginaryMap(!imaginaryMap)}
                 />
-              </Grid>
+              </Grid> */}
               <br />
             </Grid>
           </div>
         );
       case 2:
-        return <div>Processing</div>;
+        return (
+          <div>
+            Processing
+            <div style={{ position: "relative", marginTop: 30 }}>
+              <Button appearance="primary" onClick={handleNextSteps}>
+                {stepProcess >= 10 ? "See Results" : ">> Next Steps >>"}
+              </Button>
+              <Button
+                style={{ marginLeft: 2 }}
+                appearance="primary"
+                color="red"
+                onClick={handleResetSteps}
+              >
+                {"Restart"}
+              </Button>
+            </div>
+          </div>
+        );
       case 3:
-        return <div>Result</div>;
-      default:
-        return <div>Protocol</div>;
+        return (
+          <div>
+            <Grid container style={{ textAlign: "justify" }} spacing={5}>
+              <Grid item md={6}>
+                <MDBox component="img" src={truthtable} alt="Brand" width="40rem" />
+              </Grid>
+              <Grid item md={5} mr={3} mt={-4}>
+                <MDTypography variant="button" fontWeight="medium" color="text">
+                  Result
+                </MDTypography>
+                <br />
+                <MDTypography
+                  variant="button"
+                  fontWeight="regular"
+                  color="text"
+                  style={{ fontSize: 12 }}
+                >
+                  <Icon
+                    sx={{
+                      fontWeight: "bold",
+                      color: ({ palette: { info } }) => info.main,
+                      mt: 0.5,
+                      mr: 1,
+                    }}
+                  >
+                    arrow_right_alt
+                  </Icon>
+                  Bob and Alice perform local operations to decode each quantum message.
+                  Specifically, Bob performs the CNOT operation followed by the Hadamard gate H to
+                  decode Alice’s quantum message as |η⟩B = α |0⟩B + β |1⟩B.
+                  <br />{" "}
+                  <Icon
+                    sx={{
+                      fontWeight: "bold",
+                      color: ({ palette: { info } }) => info.main,
+                      mt: 0.5,
+                      mr: 1,
+                    }}
+                  >
+                    arrow_right_alt
+                  </Icon>
+                  Bob then announces his ancilla measurement μ ∈ (0, 1) to Alice by classical
+                  communication.
+                  <br />{" "}
+                  <Icon
+                    sx={{
+                      fontWeight: "bold",
+                      color: ({ palette: { info } }) => info.main,
+                      mt: 0.5,
+                      mr: 1,
+                    }}
+                  >
+                    arrow_right_alt
+                  </Icon>
+                  Using Bob’s announcement, Alice finally performs the Zμ operator on her qubit to
+                  decode Bob’s quantum message as |η2⟩A = γ |0⟩A + δ |1⟩A.
+                </MDTypography>
+              </Grid>
+              <br />
+            </Grid>
+          </div>
+        );
     }
   };
 
@@ -268,7 +403,7 @@ export default function StepsComponent({ onProtocolChange }) {
     <div style={{ paddingTop: 30, paddingLeft: 20, paddingRight: 20 }}>
       <Steps current={step}>
         <Steps.Item title="Protocol & State" />
-        <Steps.Item title="Map Definition" />
+        <Steps.Item title="Encoding" />
         <Steps.Item title="Processing" />
         <Steps.Item title="Result" />
       </Steps>
@@ -281,7 +416,7 @@ export default function StepsComponent({ onProtocolChange }) {
         <Button onClick={onPrevious} disabled={step === 0}>
           Previous
         </Button>
-        <Button onClick={onNext} disabled={step === 3}>
+        <Button onClick={onNext} disabled={step === 2}>
           Next
         </Button>
       </ButtonGroup>
@@ -291,4 +426,6 @@ export default function StepsComponent({ onProtocolChange }) {
 
 StepsComponent.propTypes = {
   handleProtocolChange: PropTypes.func,
+  handleNoiseChange: PropTypes.func,
+  handleStepChange: PropTypes.func,
 };
